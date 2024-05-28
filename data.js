@@ -118,13 +118,11 @@ const data = {
       year: '2023',
       name: 'Safemoon clone',
       technologies: [
-        'React',
         'Next.js',
-        'Firebase',
-        'Node.js',
         'Typescript',
         'Tailwind CSS',
-        'GSAP',
+        'Metamask',
+        'Uniswap',
       ],
       description:
         'Safemoon clone is a clone of the original safemoon webpage, build using next.js, tailwind and firebase',
@@ -168,7 +166,7 @@ const data = {
     {
       year: '2022',
       name: 'Vinobuah',
-      technologies: ['Laravel', 'PHP', 'MySQL'],
+      technologies: ['Next.js', 'Tailwind CSS', 'Firebase'],
       description:
         'Landing page for vinobuah, a website that sells all kinds of fruits, build using next.js and tailwind',
       link: 'https://vinobuah.com',
@@ -177,7 +175,7 @@ const data = {
     {
       year: '2021',
       name: 'Advocacy LA',
-      technologies: ['Next.js', 'Tailwind CSS'],
+      technologies: ['Next.js', 'Tailwind CSS', 'GSAP'],
       description:
         'Developed a new website for a non-profit organization that increased donations by 50%.',
       link: 'https://advocacy.la/',
@@ -186,7 +184,7 @@ const data = {
     {
       year: '2022',
       name: 'Facial Expression Recognition System',
-      technologies: ['Python', 'Flash', 'Machine Learning'],
+      technologies: ['Python', 'Flash', 'Deep Learning', 'OpenCV'],
       description:
         'Developed an internal employee time tracker and streamlined the payroll process.',
       link: '',
@@ -194,17 +192,17 @@ const data = {
     },
     {
       year: '2021',
-      name: 'PT. Buana Megah',
+      name: 'Buana Megah',
       technologies: ['Laravel Lumen', 'PHP', 'MySQL'],
       description:
         'Developed an internal employee time tracker and streamlined the payroll process.',
-      link: '',
+      link: 'http://www.buanamegah.com/',
       image: '/projects/buana-megah.png',
     },
     {
       year: '2020',
       name: 'ISTTS Book Management System',
-      technologies: ['Laravel', 'PHP', 'MySQL'],
+      technologies: ['React', 'Node.js', 'MySQL', 'Express', 'Bootstrap'],
       description:
         'Maintain the website and adding some features of a book management system for practicum activity using react as frontend, node js as backend and MySQL as database',
       link: '',
@@ -213,7 +211,7 @@ const data = {
     {
       year: '2020',
       name: 'fit4u',
-      technologies: ['Laravel', 'PHP', 'MySQL'],
+      technologies: ['Node.js', 'EJS', 'Express', 'MySQL'],
       description:
         'fit4u offer endpoint that we hope that users can find out information about the food they eat every day using node.js, ejs, express, etc.',
       link: 'https://github.com/jamesjf7/soa',
@@ -222,7 +220,7 @@ const data = {
     {
       year: '2020',
       name: 'lifeatio clone',
-      technologies: ['Laravel', 'PHP', 'MySQL'],
+      technologies: ['React', 'Node.js', 'MySQL'],
       description:
         'Lifeatio clone with a not yet implemented login feature using react as frontend, node.js as backend, and MySQL as database.',
       link: 'https://lifeatio.vercel.app',
@@ -231,25 +229,31 @@ const data = {
     {
       year: '2020',
       name: 'N Queen Symbiotic Organisms Search Algorithm',
-      technologies: ['Laravel', 'PHP', 'MySQL'],
+      technologies: ['HTML', 'CSS', 'Javascript', 'Evolutionary Algorithm'],
       description:
         'Visualization of the N Queens Problem using Symbiotic Organisms Search Algorithm using javascript.',
-      link: 'https://jamesjf7.github.io/n-queens-sos-algorithm/',
+      link: 'https://jamesjf7.github.io/N-Queens-using-Symbiotic-Organisms-Search-Algorithm',
       image: '/projects/n-queens-sos-algorithm.png',
     },
     {
       year: '2020',
       name: 'Connect 4 AI',
-      technologies: ['Laravel', 'PHP', 'MySQL'],
+      technologies: [
+        'HTML',
+        'CSS',
+        'Javascript',
+        'Bootstrap',
+        'Artificial Intelligence',
+      ],
       description:
         'Connect 4 AI is a game where you play against an AI. The AI is using minimax alpha beta pruning to play the best possible move. This project made using javascript and bootstrap',
-      link: 'https://github.com/jamesjf7/connect-4-ai',
+      link: 'https://jamesjf7.github.io/connect-4-ai/',
       image: '/projects/connect4ai.png',
     },
     {
       year: '2018 - 2022',
       name: 'Other Projects',
-      technologies: ['Laravel', 'PHP', 'MySQL'],
+      technologies: ['Various'],
       description:
         'Various projects from my time at ISTTS, including a kost management system, event management system, safari chess AI, and more.',
       link: 'https://drive.google.com/file/d/19SsBkSgDshBSC6nwIlBSYrqj_hscMg9w/view',

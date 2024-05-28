@@ -9,7 +9,7 @@ interface ProjectListItemProps {
   link: string
 }
 
-export function ProjectListItem(props: ProjectListItemProps) {
+export default function ProjectItem(props: ProjectListItemProps) {
   const { name, description, link, image } = props
 
   return (

@@ -1,5 +1,12 @@
+/* eslint-disable simple-import-sort/imports */
+import '@fortawesome/fontawesome-svg-core/styles.css'
+import { config } from '@fortawesome/fontawesome-svg-core'
+config.autoAddCss = false
+
 import { Metadata, Viewport } from 'next'
+
 import './globals.css'
+import CursorAnimation from '@/components/common/CursorAnimation'
 
 export const metadata: Metadata = {
   title: 'James Jeremy Foong',
@@ -45,7 +52,10 @@ export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en">
       <body className="leading-relaxed antialiased selection:bg-teal-300 selection:text-teal-900s">
-        {children}
+        <div className="relative">
+          <CursorAnimation />
+          {children}
+        </div>
       </body>
     </html>
   )

@@ -8,7 +8,7 @@ interface ExperienceProps {
   href: string
 }
 
-export function ExperienceListItem(prop: ExperienceProps): JSX.Element {
+export default function ExperienceItem(prop: ExperienceProps): JSX.Element {
   const { role, company, technologies, href, duration, description } = prop
 
   return (
