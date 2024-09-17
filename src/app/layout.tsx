@@ -50,7 +50,7 @@ interface RootLayoutProps {
 
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body className="leading-relaxed antialiased selection:bg-teal-300 selection:text-teal-900s">
         <div className="relative">
           <CursorAnimation />
