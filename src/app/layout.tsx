@@ -7,6 +7,8 @@ import { Metadata, Viewport } from 'next'
 
 import './globals.css'
 import CursorAnimation from '@/components/common/CursorAnimation'
+import MainNav from '@/components/navigation/main-nav'
+import ScrollProgress from '@/components/ui/scroll-progress'
 
 export const metadata: Metadata = {
   title: 'James Jeremy Foong',
@@ -48,13 +50,17 @@ interface RootLayoutProps {
   children: React.ReactNode
 }
 
-export default function RootLayout({ children }: RootLayoutProps) {
+export default function RootLayout({
+  children,
+}: RootLayoutProps): React.ReactElement {
   return (
-    <html lang="en">
-      <body className="leading-relaxed antialiased selection:bg-teal-300 selection:text-teal-900s">
-        <div className="relative">
+    <html lang="en" suppressHydrationWarning={true}>
+      <body className="leading-relaxed antialiased selection:bg-primary/20 selection:text-primary-foreground">
+        <div className="relative min-h-screen bg-background text-foreground">
+          <ScrollProgress />
           <CursorAnimation />
-          {children}
+          <MainNav />
+          <main className="pt-14">{children}</main>
         </div>
       </body>
     </html>

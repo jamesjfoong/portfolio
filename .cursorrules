@@ -1,0 +1,229 @@
+# Portfolio Project - Cursor Rules
+
+## Project Overview
+
+This is a Next.js 15 portfolio project being revamped from a basic portfolio to a cutting-edge showcase demonstrating senior frontend development expertise. The project emphasizes performance, accessibility, and innovative user interactions.
+
+## Current Tech Stack
+
+- **Framework**: Next.js 15 (App Router)
+- **Language**: TypeScript (strict mode)
+- **Styling**: Tailwind CSS 4
+- **Icons**: FontAwesome React
+- **Deployment**: Vercel
+
+## Target Architecture (Revamp Goals)
+
+- **Enhanced Stack**: Next.js 15 + TypeScript + Tailwind CSS 4 + shadcn/ui
+- **Animations**: Framer Motion + CSS animations
+- **State Management**: Zustand (for complex interactions)
+- **Testing**: Vitest + React Testing Library
+- **Performance**: Lighthouse 95+ across all metrics
+
+## Code Style & Standards
+
+### TypeScript
+
+- Use strict TypeScript configuration
+- Prefer interfaces over types for object shapes
+- Use proper generic constraints
+- Always type component props and return types
+- Use discriminated unions for complex state
+
+### React/Next.js
+
+- Use App Router exclusively (no Pages Router)
+- Prefer Server Components when possible
+- Use Client Components only when necessary (interactivity, hooks, browser APIs)
+- Follow React 19 best practices
+- Use proper error boundaries
+- Implement proper loading states
+
+### Component Architecture
+
+```typescript
+// Preferred component structure
+interface ComponentProps {
+  // Props definition
+}
+
+export default function Component({ ...props }: ComponentProps): JSX.Element {
+  // Component logic
+  return (
+    // JSX
+  )
+}
+```
+
+### File Organization
+
+- Use kebab-case for file names
+- Group related components in folders with index.tsx
+- Separate concerns: components, hooks, utils, types
+- Use barrel exports (index.ts) for clean imports
+
+### Styling Guidelines
+
+- Use Tailwind CSS 4 with CSS variables
+- Implement design system with consistent spacing, colors, typography
+- Use CSS Grid and Flexbox appropriately
+- Implement responsive design mobile-first
+- Use semantic HTML elements
+- Ensure WCAG 2.1 AAA compliance
+
+### Performance Requirements
+
+- Optimize images with Next.js Image component
+- Implement proper lazy loading
+- Use dynamic imports for code splitting
+- Minimize bundle size
+- Implement proper caching strategies
+- Target Core Web Vitals: LCP < 1.2s, FID < 100ms, CLS < 0.1
+
+### Animation Guidelines
+
+- Use CSS transforms and opacity for smooth animations
+- Implement `will-change` property judiciously
+- Respect `prefers-reduced-motion`
+- Use GPU-accelerated properties
+- Implement scroll-triggered animations
+- Create meaningful micro-interactions
+
+## Current Project Structure Analysis
+
+### Existing Components
+
+- `CursorAnimation`: Custom cursor effect with radial gradient
+- `Icon`: FontAwesome wrapper component
+- `RawHTML`: HTML content renderer
+- Navigation components: `NavItem`, `NavList`
+- Content components: `ExperienceItem`, `ProjectItem`, `HomeSection`
+
+### Data Structure
+
+- Static data in `data.js` (needs migration to TypeScript)
+- Contains: personal info, experiences, projects, socials
+- Currently using raw HTML in bio field
+
+### Current Pages
+
+- Home page: Single-page layout with sections
+- Projects page: Dedicated project showcase
+- Posts page: Blog section (placeholder)
+
+## Revamp Priorities
+
+### Phase 1: Foundation
+
+1. Migrate data.js to TypeScript with proper interfaces
+2. Implement shadcn/ui components
+3. Create design system with CSS variables
+4. Set up proper project structure per specification
+
+### Phase 2: Enhanced Features
+
+1. Advanced hero section with interactive background
+2. Smart content management system
+3. Interactive project showcases
+4. Performance optimizations
+
+### Phase 3: Advanced Interactions
+
+1. Framer Motion animations
+2. Scroll-triggered sequences
+3. Magnetic cursor effects
+4. Theme customization
+
+### Phase 4: Developer Experience
+
+1. Code playground integration
+2. API documentation
+3. Performance monitoring
+4. Testing implementation
+
+## Development Guidelines
+
+### Commit Standards
+
+- Use conventional commits
+- Include performance impact in commit messages
+- Test accessibility before committing
+
+### Code Quality
+
+- Run ESLint and Prettier before commits
+- Ensure TypeScript strict mode compliance
+- Test components in isolation
+- Validate HTML semantics
+
+### Performance Monitoring
+
+- Monitor bundle size changes
+- Test on various devices and connections
+- Validate Core Web Vitals
+- Check accessibility with automated tools
+
+### Browser Support
+
+- Modern browsers (ES2022+)
+- Progressive enhancement approach
+- Graceful degradation for older browsers
+
+## File Naming Conventions
+
+- Components: PascalCase (e.g., `HeroSection.tsx`)
+- Hooks: camelCase starting with 'use' (e.g., `useScrollAnimation.ts`)
+- Utils: camelCase (e.g., `formatDate.ts`)
+- Types: PascalCase with descriptive names (e.g., `ProjectData.ts`)
+- Constants: SCREAMING_SNAKE_CASE (e.g., `API_ENDPOINTS.ts`)
+
+## Import Organization
+
+```typescript
+// 1. React and Next.js imports
+import { useState, useEffect } from 'react'
+import Image from 'next/image'
+
+// 2. Third-party libraries
+import { motion } from 'framer-motion'
+import { cn } from '@/lib/utils'
+
+// 3. Internal components and hooks
+import { Button } from '@/components/ui/button'
+import { useScrollAnimation } from '@/hooks/useScrollAnimation'
+
+// 4. Types and interfaces
+import type { ProjectData } from '@/types/project'
+
+// 5. Relative imports
+import './component.css'
+```
+
+## Error Handling
+
+- Implement proper error boundaries
+- Use try-catch for async operations
+- Provide meaningful error messages
+- Log errors appropriately
+- Implement fallback UI states
+
+## Accessibility Requirements
+
+- Semantic HTML structure
+- Proper ARIA labels and roles
+- Keyboard navigation support
+- Screen reader compatibility
+- Color contrast compliance (7:1 ratio)
+- Focus management
+- Alternative text for images
+
+## SEO Optimization
+
+- Proper meta tags and Open Graph
+- Structured data implementation
+- Semantic HTML structure
+- Fast loading times
+- Mobile-first responsive design
+- Clean URL structure
+
+Remember: This project should demonstrate senior-level frontend expertise through exceptional performance, accessibility, and user experience. Every component should be crafted with attention to detail and modern best practices.

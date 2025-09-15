@@ -1,0 +1,163 @@
+{
+  "colorScheme": {
+    "name": "Portfolio Dark Theme",
+    "description": "Modern dark theme with vibrant accents for James Jeremy Foong's portfolio",
+    "version": "1.0.0",
+    "colors": {
+      "primary": {
+        "main": "hsl(142.1, 76.2%, 36.3%)",
+        "description": "Primary green color for buttons, links, and accents",
+        "usage": ["buttons", "active states", "links", "highlights"]
+      },
+      "background": {
+        "main": "hsl(222.2, 84%, 4.9%)",
+        "description": "Main dark background color",
+        "usage": ["page background", "card backgrounds"]
+      },
+      "foreground": {
+        "main": "hsl(210, 40%, 98%)",
+        "description": "Primary text color",
+        "usage": ["headings", "primary text"]
+      },
+      "muted": {
+        "main": "hsl(217.2, 32.6%, 17.5%)",
+        "foreground": "hsl(215, 20.2%, 65.1%)",
+        "description": "Muted colors for secondary elements",
+        "usage": ["secondary text", "subtle backgrounds"]
+      },
+      "card": {
+        "main": "hsl(222.2, 84%, 4.9%)",
+        "foreground": "hsl(210, 40%, 98%)",
+        "description": "Card background and text colors",
+        "usage": ["project cards", "timeline items", "content sections"]
+      },
+      "border": {
+        "main": "hsl(217.2, 32.6%, 17.5%)",
+        "description": "Border color for elements",
+        "usage": ["card borders", "input borders", "dividers"]
+      },
+      "accent": {
+        "blue": "#3b82f6",
+        "purple": "#8b5cf6",
+        "red": "#ef4444",
+        "green": "#10b981",
+        "yellow": "#f59e0b",
+        "description": "Accent colors for various UI elements",
+        "usage": ["badges", "status indicators", "highlights"]
+      }
+    },
+    "gradients": {
+      "primary": {
+        "from": "hsl(142.1, 76.2%, 36.3%)",
+        "to": "#8b5cf6",
+        "description": "Primary gradient for hero text and special elements"
+      },
+      "background": {
+        "from": "hsl(222.2, 84%, 4.9%)",
+        "via": "hsl(217.2, 32.6%, 17.5%)",
+        "to": "hsl(142.1, 76.2%, 36.3%)",
+        "opacity": "5%",
+        "description": "Subtle background gradient for sections"
+      },
+      "badge": {
+        "tech": {
+          "from": "#3b82f6",
+          "to": "#06b6d4",
+          "opacity": "10%",
+          "description": "Technology badge gradient"
+        },
+        "skill": {
+          "from": "#8b5cf6",
+          "to": "#ec4899",
+          "opacity": "10%",
+          "description": "Skill level badge gradient"
+        },
+        "category": {
+          "from": "#10b981",
+          "to": "#059669",
+          "opacity": "10%",
+          "description": "Category badge gradient"
+        }
+      }
+    },
+    "shadows": {
+      "card": {
+        "default": "0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1)",
+        "hover": "0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)",
+        "description": "Card shadow states"
+      },
+      "navigation": {
+        "default": "0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)",
+        "hover": "0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)",
+        "description": "Navigation shadow states"
+      }
+    },
+    "opacity": {
+      "backdrop": "80%",
+      "overlay": "95%",
+      "disabled": "50%",
+      "muted": "70%",
+      "description": "Standard opacity values for different states"
+    },
+    "borderRadius": {
+      "sm": "calc(0.5rem - 4px)",
+      "md": "calc(0.5rem - 2px)",
+      "lg": "0.5rem",
+      "xl": "0.75rem",
+      "2xl": "1rem",
+      "full": "9999px",
+      "description": "Border radius scale for consistent rounded corners"
+    },
+    "spacing": {
+      "section": "5rem",
+      "card": "1.5rem",
+      "element": "1rem",
+      "description": "Standard spacing values for layout consistency"
+    }
+  },
+  "usage": {
+    "badges": {
+      "default": "Primary color with 10% opacity background",
+      "tech": "Blue gradient with hover effects",
+      "skill": "Purple gradient based on skill level",
+      "category": "Green gradient for project categories",
+      "cursor": "pointer - badges are interactive elements"
+    },
+    "cards": {
+      "background": "Card color with glassmorphism effect",
+      "hover": "Subtle scale transform with enhanced shadow",
+      "border": "Border color with 50% opacity, primary color on hover"
+    },
+    "navigation": {
+      "desktop": "Floating design with backdrop blur",
+      "mobile": "Full-width top bar with slide-down menu",
+      "active": "Primary color background with enhanced opacity"
+    },
+    "animations": {
+      "duration": {
+        "fast": "150ms",
+        "normal": "200ms",
+        "slow": "300ms"
+      },
+      "easing": "ease-in-out",
+      "description": "Standard animation timings for consistent feel"
+    }
+  },
+  "accessibility": {
+    "contrast": {
+      "minimum": "4.5:1",
+      "enhanced": "7:1",
+      "description": "WCAG AAA compliance for text contrast"
+    },
+    "focus": {
+      "color": "hsl(142.1, 76.2%, 36.3%)",
+      "width": "2px",
+      "offset": "2px",
+      "description": "Focus ring styling for keyboard navigation"
+    },
+    "motion": {
+      "respectPreference": true,
+      "description": "Respects user's reduced motion preferences"
+    }
+  }
+}

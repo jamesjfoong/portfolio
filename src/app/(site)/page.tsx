@@ -1,0 +1,112 @@
+import ModernHero from '@/components/sections/modern-hero'
+import ProjectShowcase from '@/components/sections/project-showcase'
+import personalData from '@/data/unified-data'
+import type { Social } from '@/types'
+
+export default function Home() {
+  const { name, title, bio, projects, socials, quote } = personalData
+
+  return (
+    <div className="min-h-screen">
+      {/* Modern Hero Section */}
+      <ModernHero data={{ name, title, quote, socials }} />
+
+      {/* About Section */}
+      <section id="about" className="py-20 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-secondary/5 via-background to-primary/5" />
+        <div className="absolute top-10 right-10 w-64 h-64 bg-gradient-to-br from-primary/10 to-purple-500/5 rounded-full blur-3xl" />
+        <div className="absolute bottom-10 left-10 w-80 h-80 bg-gradient-to-br from-blue-500/5 to-cyan-500/10 rounded-full blur-3xl" />
+
+        <div className="container max-w-4xl mx-auto px-6 relative z-10">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+              About Me
+            </h2>
+            <div className="w-24 h-1 bg-gradient-to-r from-primary to-purple-500 mx-auto rounded-full" />
+          </div>
+          <div className="bg-card/50 backdrop-blur-sm border border-border/50 rounded-2xl p-8 md:p-12 shadow-xl">
+            <div
+              className="prose prose-lg max-w-none text-muted-foreground leading-relaxed"
+              dangerouslySetInnerHTML={{ __html: bio }}
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* Featured Projects Section */}
+      <ProjectShowcase projects={projects} className="py-20" />
+
+      {/* Footer */}
+      <footer className="relative py-16 overflow-hidden">
+        {/* Background */}
+        <div className="absolute inset-0 bg-gradient-to-br from-background via-secondary/5 to-primary/5" />
+        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
+
+        {/* Floating elements */}
+        <div className="absolute top-8 left-1/4 w-32 h-32 bg-primary/5 rounded-full blur-2xl animate-pulse" />
+        <div
+          className="absolute bottom-8 right-1/4 w-24 h-24 bg-purple-500/5 rounded-full blur-2xl animate-pulse"
+          style={{ animationDelay: '1s' }}
+        />
+
+        <div className="container max-w-6xl mx-auto px-6 relative z-10">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
+            {/* Brand */}
+            <div className="text-center md:text-left">
+              <h3 className="text-2xl font-bold bg-gradient-to-r from-primary to-purple-500 bg-clip-text text-transparent mb-2">
+                James Jeremy Foong
+              </h3>
+              <p className="text-muted-foreground text-sm">
+                Senior Software Development Engineer
+              </p>
+            </div>
+
+            {/* Social Links */}
+            <div className="flex justify-center gap-4">
+              {socials.map((social: Social) => (
+                <a
+                  key={social.platform}
+                  href={social.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group relative p-3 rounded-full bg-card/50 border border-border/50 hover:border-primary/50 transition-all duration-300 hover:scale-110 hover:shadow-lg"
+                >
+                  <span className="text-muted-foreground group-hover:text-primary transition-colors text-sm font-medium">
+                    {social.platform.toUpperCase()}
+                  </span>
+                  <div className="absolute inset-0 rounded-full bg-primary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                </a>
+              ))}
+            </div>
+
+            {/* Tech Stack */}
+            <div className="text-center md:text-right">
+              <p className="text-sm text-muted-foreground mb-2">
+                Built with modern technologies
+              </p>
+              <div className="flex flex-wrap justify-center md:justify-end gap-2">
+                <span className="px-2 py-1 text-xs bg-gradient-to-r from-blue-500/10 to-cyan-500/5 text-blue-600 dark:text-blue-400 border border-blue-500/20 rounded-full">
+                  Next.js 15
+                </span>
+                <span className="px-2 py-1 text-xs bg-gradient-to-r from-purple-500/10 to-pink-500/5 text-purple-600 dark:text-purple-400 border border-purple-500/20 rounded-full">
+                  TypeScript
+                </span>
+                <span className="px-2 py-1 text-xs bg-gradient-to-r from-emerald-500/10 to-green-500/5 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20 rounded-full">
+                  Tailwind CSS
+                </span>
+              </div>
+            </div>
+          </div>
+
+          {/* Bottom */}
+          <div className="mt-12 pt-8 border-t border-border/30 text-center">
+            <p className="text-xs text-muted-foreground">
+              © 2025 James Jeremy Foong. All rights reserved. • Designed &
+              Developed with ❤️
+            </p>
+          </div>
+        </div>
+      </footer>
+    </div>
+  )
+}
