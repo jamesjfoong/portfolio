@@ -1,13 +1,13 @@
 import {
-  SocialPlatform,
-  ExperienceType,
-  ProjectCategory,
-  ProjectStatus,
-  MediaType,
   BlogCategory,
   BlogStatus,
-  TechCategory,
+  ExperienceType,
+  MediaType,
+  ProjectCategory,
+  ProjectStatus,
   SkillLevel,
+  SocialPlatform,
+  TechCategory,
 } from './enums'
 
 export interface Social {

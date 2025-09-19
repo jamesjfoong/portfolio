@@ -1,14 +1,16 @@
 'use client'
 
 import React from 'react'
-import { motion } from 'framer-motion'
-import { ArrowLeft, Calendar, Clock, Share2 } from 'lucide-react'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 
+import { motion } from 'framer-motion'
+import { ArrowLeft, Calendar, Clock, Share2 } from 'lucide-react'
+
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
-import { fadeInUp, staggerContainer, staggerItem } from '@/lib/animations'
+import { staggerContainer, staggerItem } from '@/lib/animations'
+
 import { BlogCategory } from '@/types/enums'
 
 // Sample blog data - in a real app, this would come from a CMS or API
@@ -54,11 +56,11 @@ interface BlogPostPageProps {
 
 export default function BlogPostPage({
   params,
-}: BlogPostPageProps): JSX.Element {
+}: BlogPostPageProps): React.ReactElement {
   return <BlogPostContent params={params} />
 }
 
-function BlogPostContent({ params }: BlogPostPageProps): JSX.Element {
+function BlogPostContent({ params }: BlogPostPageProps): React.ReactElement {
   const [slug, setSlug] = React.useState<string | null>(null)
 
   React.useEffect(() => {

@@ -1,20 +1,21 @@
 'use client'
 
 import React from 'react'
+import Link from 'next/link'
+
 import { motion } from 'framer-motion'
 import { Download, Mail, MapPin } from 'lucide-react'
-import Image from 'next/image'
 
+import { AnimatedText } from '@/components/animations/kinetic-typography'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Timeline } from '@/components/ui/timeline'
-import { AnimatedText } from '@/components/animations/kinetic-typography'
-import { fadeInUp, staggerContainer, staggerItem } from '@/lib/animations'
+import { staggerContainer, staggerItem } from '@/lib/animations'
+
 import personalData from '@/data/unified-data'
-import { TechCategory } from '@/types/enums'
 
 export default function AboutPage(): React.ReactElement {
-  const { name, title, bio, location, email, education, skills, experiences } =
+  const { name, bio, location, email, education, skills, experiences } =
     personalData
 
   const skillsByCategory = skills.reduce((acc, skill) => {
@@ -202,7 +203,7 @@ export default function AboutPage(): React.ReactElement {
               </a>
             </Button>
             <Button variant="outline" size="lg" asChild>
-              <a href="/projects">View My Work</a>
+              <Link href="/projects">View My Work</Link>
             </Button>
           </div>
         </motion.section>

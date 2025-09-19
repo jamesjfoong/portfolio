@@ -1,0 +1,12 @@
+{
+  "title": "Lab",
+  "description": "Experimental projects and technical explorations",
+  "categories": [
+    "experiment",
+    "proof-of-concept",
+    "prototype",
+    "research"
+  ],
+  "defaultSort": "recent",
+  "featured": []
+}

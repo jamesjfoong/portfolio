@@ -1,103 +1,78 @@
 'use client'
 
 import React from 'react'
-import { motion } from 'framer-motion'
-import { useEffect, useState } from 'react'
 
-interface FloatingElement {
-  id: number
-  x: number
-  y: number
-  size: number
-  duration: number
-  delay: number
+import { motion } from 'framer-motion'
+
+interface FloatingDotProps {
+  index: number
 }
 
-export default function FloatingElements(): React.ReactElement {
-  const [elements, setElements] = useState<FloatingElement[]>([])
+const FloatingDot: React.FC<FloatingDotProps> = ({ index }) => {
+  const positions = [
+    { x: 20, y: 30 },
+    { x: 80, y: 20 },
+    { x: 70, y: 80 },
+    { x: 30, y: 70 },
+    { x: 10, y: 60 },
+    { x: 90, y: 40 },
+  ]
 
-  useEffect(() => {
-    const generateElements = () => {
-      const newElements: FloatingElement[] = []
-      for (let i = 0; i < 15; i++) {
-        newElements.push({
-          id: i,
-          x: Math.random() * 100,
-          y: Math.random() * 100,
-          size: Math.random() * 4 + 2,
-          duration: Math.random() * 10 + 15,
-          delay: Math.random() * 5,
-        })
-      }
-      setElements(newElements)
-    }
-
-    generateElements()
-  }, [])
+  const position = positions[index % positions.length]
 
   return (
+    <motion.div
+      className="absolute w-2 h-2 rounded-full bg-primary/40"
+      style={{
+        left: `${position.x}%`,
+        top: `${position.y}%`,
+      }}
+      animate={{
+        y: [-15, 15, -15],
+        opacity: [0.4, 1, 0.4],
+      }}
+      transition={{
+        duration: 6 + index,
+        repeat: Infinity,
+        ease: 'easeInOut',
+        delay: index * 0.8,
+      }}
+    />
+  )
+}
+
+/**
+ * Simplified floating elements component with optimized performance
+ * Uses predefined positions instead of random generation for consistency
+ */
+export default function FloatingElements(): React.ReactElement {
+  return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none">
-      {elements.map(element => (
-        <motion.div
-          key={element.id}
-          className="absolute rounded-full bg-gradient-to-br from-primary/20 to-purple-500/10 backdrop-blur-sm"
-          style={{
-            left: `${element.x}%`,
-            top: `${element.y}%`,
-            width: `${element.size}px`,
-            height: `${element.size}px`,
-          }}
-          animate={{
-            y: [-20, 20, -20],
-            x: [-10, 10, -10],
-            rotate: [0, 360],
-            scale: [1, 1.2, 1],
-          }}
-          transition={{
-            duration: element.duration,
-            repeat: Infinity,
-            ease: 'easeInOut',
-            delay: element.delay,
-          }}
-        />
+      {/* Floating dots with predefined positions */}
+      {Array.from({ length: 6 }).map((_, i) => (
+        <FloatingDot key={i} index={i} />
       ))}
 
-      {/* Geometric shapes */}
+      {/* Static geometric shapes with subtle animations */}
       <motion.div
-        className="absolute top-1/4 left-1/4 w-20 h-20 border-2 border-primary/20 rounded-lg"
+        className="absolute top-1/4 left-1/4 w-16 h-16 border border-primary/10 rounded-lg"
         animate={{
           rotate: [0, 360],
-          scale: [1, 1.1, 1],
         }}
         transition={{
-          duration: 20,
+          duration: 30,
           repeat: Infinity,
           ease: 'linear',
         }}
       />
 
       <motion.div
-        className="absolute top-3/4 right-1/4 w-16 h-16 bg-gradient-to-br from-purple-500/10 to-pink-500/10 rounded-full backdrop-blur-sm"
+        className="absolute top-3/4 right-1/4 w-12 h-12 bg-gradient-to-br from-purple-500/5 to-primary/5 rounded-full"
         animate={{
-          y: [-30, 30, -30],
-          rotate: [0, -360],
+          scale: [1, 1.1, 1],
         }}
         transition={{
-          duration: 25,
-          repeat: Infinity,
-          ease: 'easeInOut',
-        }}
-      />
-
-      <motion.div
-        className="absolute top-1/2 right-1/3 w-12 h-12 border-2 border-cyan-500/20"
-        style={{ clipPath: 'polygon(50% 0%, 0% 100%, 100% 100%)' }}
-        animate={{
-          rotate: [0, 360],
-          scale: [1, 1.3, 1],
-        }}
-        transition={{
-          duration: 18,
+          duration: 8,
           repeat: Infinity,
           ease: 'easeInOut',
         }}

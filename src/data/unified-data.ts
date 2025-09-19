@@ -1,12 +1,12 @@
 import type { PersonalData } from '@/types'
 import {
-  SocialPlatform,
   ExperienceType,
+  MediaType,
   ProjectCategory,
   ProjectStatus,
-  MediaType,
-  TechCategory,
   SkillLevel,
+  SocialPlatform,
+  TechCategory,
 } from '@/types/enums'
 
 const personalData: PersonalData = {

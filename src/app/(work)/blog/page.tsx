@@ -1,14 +1,16 @@
 'use client'
 
+import { useState } from 'react'
+import Link from 'next/link'
+
 import { motion } from 'framer-motion'
 import { Calendar, Clock, Search } from 'lucide-react'
-import Link from 'next/link'
-import { useState } from 'react'
 
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { fadeInUp, staggerContainer, staggerItem } from '@/lib/animations'
+
 import { BlogCategory } from '@/types/enums'
 
 // Sample blog data - in a real app, this would come from a CMS or API
@@ -39,7 +41,7 @@ const samplePosts = [
   },
 ]
 
-export default function BlogPage(): JSX.Element {
+export default function BlogPage(): React.ReactElement {
   const [searchQuery, setSearchQuery] = useState('')
   const [selectedCategory, setSelectedCategory] = useState<
     BlogCategory | 'all'
@@ -208,4 +210,3 @@ export default function BlogPage(): JSX.Element {
     </div>
   )
 }
-

@@ -1,0 +1,17 @@
+{
+  "title": "Projects",
+  "description": "A collection of projects showcasing technical expertise and innovation",
+  "categories": [
+    "web-development",
+    "ai-ml",
+    "developer-tools",
+    "data-science",
+    "game-development"
+  ],
+  "defaultSort": "recent",
+  "featured": [
+    "github-pr-review-mcp",
+    "groq-commit",
+    "catapa-landing-page"
+  ]
+}

@@ -1,15 +1,17 @@
 'use client'
 
 import React from 'react'
+import Link from 'next/link'
+
 import { motion } from 'framer-motion'
 import { ArrowRight } from 'lucide-react'
-import Link from 'next/link'
 
 import { Button } from '@/components/ui/button'
 import ProjectCard from '@/components/ui/project-card'
 import { useScrollAnimation } from '@/hooks/useScrollAnimation'
 import { fadeInUp, staggerContainer, staggerItem } from '@/lib/animations'
 import { cn } from '@/lib/utils'
+
 import type { Project } from '@/types'
 
 interface ProjectShowcaseProps {

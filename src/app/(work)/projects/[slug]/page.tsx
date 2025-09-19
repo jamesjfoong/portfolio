@@ -1,24 +1,25 @@
 'use client'
 
 import React from 'react'
-import { motion } from 'framer-motion'
-import {
-  ArrowLeft,
-  ExternalLink,
-  Github,
-  Calendar,
-  Users,
-  Star,
-} from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 
-import { Button } from '@/components/ui/button'
+import { motion } from 'framer-motion'
+import {
+  ArrowLeft,
+  Calendar,
+  ExternalLink,
+  Github,
+  Star,
+  Users,
+} from 'lucide-react'
+
 import { Badge } from '@/components/ui/badge'
-import { fadeInUp, staggerContainer, staggerItem } from '@/lib/animations'
+import { Button } from '@/components/ui/button'
+import { staggerContainer, staggerItem } from '@/lib/animations'
+
 import personalData from '@/data/unified-data'
-import type { Project } from '@/types'
 
 interface ProjectPageProps {
   params: Promise<{

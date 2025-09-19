@@ -1,14 +1,16 @@
 'use client'
 
-import { faArrowLeft } from '@fortawesome/free-solid-svg-icons'
-import data from 'data'
 import Image from 'next/image'
 import Link from 'next/link'
 
-import Icon from '@/components/common/Icon'
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons'
+
+import Icon from '@/components/common/icon'
+
+import personalData from '@/data/unified-data'
 
 export default function Page() {
-  const { name, projects } = data
+  const { name, projects } = personalData
 
   return (
     <div className="mx-auto min-h-screen max-w-(--breakpoint-xl) px-6 py-12 font-sans md:px-12 md:py-20 lg:px-24 lg:py-0">
@@ -56,19 +58,23 @@ export default function Page() {
               <tbody>
                 {projects.map(project => (
                   <tr
-                    key={project.name}
+                    key={project.id}
                     className="border-b border-slate-300/10 last:border-none"
                   >
                     <td className="py-4 pr-4 align-top text-sm">
                       {project.year}
                     </td>
                     <td className="py-4 pr-4 align-top font-semibold leading-snug text-slate-200">
-                      {project.name}
+                      {project.title}
                     </td>
                     <td className="py-4 pr-4 align-top text-sm">
                       <Image
-                        src={project.image}
-                        alt={project.name}
+                        src={
+                          project.media.thumbnail ||
+                          project.media.gallery?.[0] ||
+                          '/projects/otherprojects.png'
+                        }
+                        alt={project.title}
                         width={100}
                         height={100}
                       />
@@ -78,10 +84,10 @@ export default function Page() {
                         className="flex flex-wrap"
                         aria-label="Technologies used"
                       >
-                        {project.technologies.map((technology: string) => (
-                          <li key={technology} className="mr-1.5 mb-2">
+                        {project.technologies.map(technology => (
+                          <li key={technology.name} className="mr-1.5 mb-2">
                             <div className="flex items-center rounded-full bg-teal-400/10 px-3 py-1 text-xs font-medium leading-5 text-teal-300 ">
-                              {technology}
+                              {technology.name}
                             </div>
                           </li>
                         ))}
@@ -89,11 +95,13 @@ export default function Page() {
                     </td>
                     <td className="py-4 pr-4 align-top text-sm">
                       <Link
-                        href={project.link}
+                        href={project.links.live || project.links.github || '#'}
                         target="_blank"
                         className="hover:text-teal-300 transition-colors"
                       >
-                        {project.link}
+                        {project.links.live ||
+                          project.links.github ||
+                          'No Link'}
                       </Link>
                     </td>
                   </tr>

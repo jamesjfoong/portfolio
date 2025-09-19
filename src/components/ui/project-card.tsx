@@ -1,14 +1,17 @@
 'use client'
 
 import React from 'react'
-import { motion } from 'framer-motion'
-import { ExternalLink, Github, Calendar } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 
+import { motion } from 'framer-motion'
+import { Calendar, ExternalLink, Github } from 'lucide-react'
+
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
+import { useCursorShine } from '@/hooks/useCursorShine'
 import { cn } from '@/lib/utils'
+
 import type { Project } from '@/types'
 
 interface ProjectCardProps {
@@ -20,8 +23,11 @@ export default function ProjectCard({
   project,
   className,
 }: ProjectCardProps): React.ReactElement {
+  const { cardRef, shineStyle } = useCursorShine()
+
   return (
     <motion.div
+      ref={cardRef}
       whileHover={{ y: -8 }}
       whileTap={{ scale: 0.98 }}
       data-cursor="project"
@@ -30,10 +36,16 @@ export default function ProjectCard({
         className
       )}
     >
+      {/* Cursor Shine Effect */}
+      <div
+        className="absolute inset-0 pointer-events-none opacity-60 z-10"
+        style={shineStyle}
+      />
+
       {/* Background hover effect */}
       <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-purple-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
       {/* Project Image */}
-      <div className="relative h-40 sm:h-48 overflow-hidden">
+      <div className="relative h-40 sm:h-48 overflow-hidden z-20">
         <Image
           src={project.media.thumbnail}
           alt={project.title}
@@ -87,7 +99,7 @@ export default function ProjectCard({
       </div>
 
       {/* Project Content */}
-      <Link href={`/projects/${project.slug}`} className="block">
+      <Link href={`/projects/${project.slug}`} className="block relative z-20">
         <div className="p-4 sm:p-6">
           <div className="flex items-center justify-between mb-3">
             <Badge variant="outline" className="text-xs">

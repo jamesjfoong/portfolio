@@ -1,10 +1,11 @@
 'use client'
 
 import React from 'react'
-import { motion } from 'framer-motion'
+import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { useState, useEffect } from 'react'
+
+import { motion } from 'framer-motion'
 
 import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
@@ -54,16 +55,16 @@ export default function MainNav(): React.ReactElement {
         }}
         transition={{ duration: 0.2, ease: 'easeInOut' }}
       >
-        <nav className="bg-background/90 backdrop-blur-md border border-border/50 rounded-full px-6 py-3 shadow-lg hover:shadow-xl transition-all duration-200">
+        <nav className="bg-background/80 backdrop-blur-xl border border-border/30 rounded-2xl px-8 py-4 shadow-lg hover:shadow-xl hover:border-primary/20 transition-all duration-300 ease-out">
           <div className="flex items-center gap-6">
             {navigation.map(item => (
               <Link
                 key={item.href}
                 href={item.href}
                 className={cn(
-                  'relative px-3 py-2 text-sm font-medium transition-all duration-150 rounded-full hover:bg-primary/10',
+                  'relative px-4 py-2.5 text-sm font-medium transition-all duration-300 ease-out rounded-xl hover:bg-primary/10 hover:scale-105',
                   pathname === item.href
-                    ? 'text-primary bg-primary/10'
+                    ? 'text-primary bg-primary/15 shadow-sm'
                     : 'text-foreground/70 hover:text-foreground'
                 )}
               >
@@ -71,7 +72,7 @@ export default function MainNav(): React.ReactElement {
                 {pathname === item.href && (
                   <motion.div
                     layoutId="navbar-indicator"
-                    className="absolute inset-0 bg-primary/20 rounded-full border border-primary/30"
+                    className="absolute inset-0 bg-primary/20 rounded-xl border border-primary/30"
                     initial={false}
                     transition={{ duration: 0.15 }}
                   />
@@ -83,7 +84,7 @@ export default function MainNav(): React.ReactElement {
       </motion.header>
 
       {/* Mobile Navigation */}
-      <div className="md:hidden fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-md border-b border-border/50">
+      <div className="md:hidden fixed top-0 left-0 right-0 z-50 bg-background/90 backdrop-blur-xl border-b border-border/30">
         <div className="flex items-center justify-between px-4 py-3">
           <div className="text-lg font-semibold bg-gradient-to-r from-primary to-purple-500 bg-clip-text text-transparent">
             JF

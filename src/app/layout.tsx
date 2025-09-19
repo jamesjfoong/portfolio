@@ -1,14 +1,15 @@
-/* eslint-disable simple-import-sort/imports */
-import '@fortawesome/fontawesome-svg-core/styles.css'
 import { config } from '@fortawesome/fontawesome-svg-core'
+
+import '@fortawesome/fontawesome-svg-core/styles.css'
 config.autoAddCss = false
 
 import { Metadata, Viewport } from 'next'
 
-import './globals.css'
-import CursorAnimation from '@/components/common/CursorAnimation'
+import CursorAnimation from '@/components/common/cursor-animation'
 import MainNav from '@/components/navigation/main-nav'
 import ScrollProgress from '@/components/ui/scroll-progress'
+
+import './globals.css'
 
 export const metadata: Metadata = {
   title: 'James Jeremy Foong',

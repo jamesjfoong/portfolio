@@ -1,7 +1,10 @@
 import ModernHero from '@/components/sections/modern-hero'
 import ProjectShowcase from '@/components/sections/project-showcase'
-import personalData from '@/data/unified-data'
+import ShineCard from '@/components/ui/shine-card'
+
 import type { Social } from '@/types'
+
+import personalData from '@/data/unified-data'
 
 export default function Home() {
   const { name, title, bio, projects, socials, quote } = personalData
@@ -24,12 +27,18 @@ export default function Home() {
             </h2>
             <div className="w-24 h-1 bg-gradient-to-r from-primary to-purple-500 mx-auto rounded-full" />
           </div>
-          <div className="bg-card/50 backdrop-blur-sm border border-border/50 rounded-2xl p-8 md:p-12 shadow-xl">
+          <ShineCard
+            className="bg-card/50 backdrop-blur-sm border border-border/50 rounded-2xl p-8 md:p-12 shadow-xl hover:shadow-2xl transition-all duration-300"
+            motionProps={{
+              whileHover: { y: -2 },
+              transition: { duration: 0.2 },
+            }}
+          >
             <div
               className="prose prose-lg max-w-none text-muted-foreground leading-relaxed"
               dangerouslySetInnerHTML={{ __html: bio }}
             />
-          </div>
+          </ShineCard>
         </div>
       </section>
 

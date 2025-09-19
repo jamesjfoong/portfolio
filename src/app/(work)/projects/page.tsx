@@ -1,16 +1,19 @@
 'use client'
 
 import React from 'react'
+import { useState } from 'react'
+
 import { motion } from 'framer-motion'
 import { Filter, Search } from 'lucide-react'
-import { useState } from 'react'
 
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import ProjectCard from '@/components/ui/project-card'
 import { fadeInUp, staggerContainer, staggerItem } from '@/lib/animations'
-import personalData from '@/data/unified-data'
+
 import { ProjectCategory } from '@/types/enums'
+
+import personalData from '@/data/unified-data'
 
 export default function ProjectsPage(): React.ReactElement {
   const [searchQuery, setSearchQuery] = useState('')

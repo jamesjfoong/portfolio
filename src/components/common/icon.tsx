@@ -1,4 +1,5 @@
 import React from 'react'
+
 import { IconDefinition } from '@fortawesome/fontawesome-svg-core'
 import {
   FontAwesomeIcon,
@@ -13,7 +14,7 @@ interface IconProps extends FontAwesomeIconProps {
  * Icon component that uses FontAwesomeIcon to render an icon.
  * @param {IconProps} props - The props for the Icon component.
  * @param {IconDefinition} props.icon - The icon to render.
- * @returns {JSX.Element} The Icon component.
+ * @returns {React.ReactElement} The Icon component.
  * @example
  * ```tsx
  * import { faCoffee } from '@fortawesome/free-solid-svg-icons'
@@ -24,7 +25,7 @@ interface IconProps extends FontAwesomeIconProps {
  * }
  * ```
  */
-const Icon: React.FC<IconProps> = ({ icon, ...rest }): JSX.Element => {
+const Icon: React.FC<IconProps> = ({ icon, ...rest }): React.ReactElement => {
   return <FontAwesomeIcon icon={icon} {...rest} />
 }
 

@@ -1,157 +1,271 @@
 'use client'
 
-import React, { useRef, useState } from 'react'
-import { Canvas, useFrame } from '@react-three/fiber'
-import {
-  OrbitControls,
-  Sphere,
-  Box,
-  Torus,
-  MeshDistortMaterial,
-  Float,
-} from '@react-three/drei'
+import React from 'react'
+
 import { motion } from 'framer-motion'
-import * as THREE from 'three'
 
-function AnimatedSphere({
-  position,
-  color,
-}: {
-  position: [number, number, number]
-  color: string
-}) {
-  const meshRef = useRef<THREE.Mesh>(null)
-  const [hovered, setHovered] = useState(false)
+interface GeometricShapeProps {
+  className?: string
+  delay?: number
+  size?: 'sm' | 'md' | 'lg'
+  variant?: 'circle' | 'square' | 'triangle' | 'hexagon'
+}
 
-  useFrame(state => {
-    if (meshRef.current) {
-      meshRef.current.rotation.x = state.clock.elapsedTime * 0.2
-      meshRef.current.rotation.y = state.clock.elapsedTime * 0.3
-    }
-  })
+const GeometricShape: React.FC<GeometricShapeProps> = ({
+  className = '',
+  delay = 0,
+  size = 'md',
+  variant = 'circle',
+}) => {
+  const sizeClasses = {
+    sm: 'w-8 h-8',
+    md: 'w-16 h-16',
+    lg: 'w-24 h-24',
+  }
+
+  const shapeClasses = {
+    circle: 'rounded-full',
+    square: 'rounded-lg rotate-45',
+    triangle: 'rounded-sm',
+    hexagon: 'rounded-xl',
+  }
+
+  const clipPaths = {
+    circle: '',
+    square: '',
+    triangle: 'polygon(50% 0%, 0% 100%, 100% 100%)',
+    hexagon: 'polygon(30% 0%, 70% 0%, 100% 50%, 70% 100%, 30% 100%, 0% 50%)',
+  }
 
   return (
-    <Float speed={1.5} rotationIntensity={1} floatIntensity={2}>
-      <Sphere
-        ref={meshRef}
-        args={[1, 32, 32]}
-        position={position}
-        scale={hovered ? 1.2 : 1}
-        onPointerOver={() => setHovered(true)}
-        onPointerOut={() => setHovered(false)}
-      >
-        <MeshDistortMaterial
-          color={color}
-          attach="material"
-          distort={0.3}
-          speed={2}
-          roughness={0.1}
-          metalness={0.8}
-        />
-      </Sphere>
-    </Float>
+    <motion.div
+      className={`absolute ${sizeClasses[size]} ${shapeClasses[variant]} bg-gradient-to-br from-primary/30 via-blue-500/20 to-purple-500/15 backdrop-blur-sm shadow-lg ${className}`}
+      style={{
+        clipPath: clipPaths[variant],
+      }}
+      animate={{
+        y: [-15, 15, -15],
+        x: [-10, 10, -10],
+        rotate: variant === 'square' ? [45, 405, 45] : [0, 360, 0],
+        scale: [1, 1.1, 1],
+      }}
+      transition={{
+        duration: 6 + delay,
+        repeat: Infinity,
+        ease: 'easeInOut',
+        delay,
+      }}
+      whileHover={{
+        scale: 1.2,
+        rotate: variant === 'square' ? 90 : 45,
+        transition: { duration: 0.3 },
+      }}
+    />
   )
 }
 
-function AnimatedBox({ position }: { position: [number, number, number] }) {
-  const meshRef = useRef<THREE.Mesh>(null)
-  const [hovered, setHovered] = useState(false)
-
-  useFrame(state => {
-    if (meshRef.current) {
-      meshRef.current.rotation.x = state.clock.elapsedTime * 0.4
-      meshRef.current.rotation.y = state.clock.elapsedTime * 0.2
-    }
-  })
-
-  return (
-    <Float speed={2} rotationIntensity={2} floatIntensity={1}>
-      <Box
-        ref={meshRef}
-        args={[1.5, 1.5, 1.5]}
-        position={position}
-        scale={hovered ? 1.1 : 1}
-        onPointerOver={() => setHovered(true)}
-        onPointerOut={() => setHovered(false)}
-      >
-        <meshStandardMaterial
-          color="#3b82f6"
-          metalness={0.7}
-          roughness={0.2}
-          transparent
-          opacity={0.8}
-        />
-      </Box>
-    </Float>
-  )
-}
-
-function AnimatedTorus({ position }: { position: [number, number, number] }) {
-  const meshRef = useRef<THREE.Mesh>(null)
-  const [hovered, setHovered] = useState(false)
-
-  useFrame(state => {
-    if (meshRef.current) {
-      meshRef.current.rotation.x = state.clock.elapsedTime * 0.1
-      meshRef.current.rotation.z = state.clock.elapsedTime * 0.3
-    }
-  })
-
-  return (
-    <Float speed={1} rotationIntensity={0.5} floatIntensity={3}>
-      <Torus
-        ref={meshRef}
-        args={[1, 0.3, 16, 32]}
-        position={position}
-        scale={hovered ? 1.3 : 1}
-        onPointerOver={() => setHovered(true)}
-        onPointerOut={() => setHovered(false)}
-      >
-        <meshStandardMaterial
-          color="#8b5cf6"
-          metalness={0.9}
-          roughness={0.1}
-          transparent
-          opacity={0.9}
-        />
-      </Torus>
-    </Float>
-  )
-}
-
+/**
+ * Enhanced interactive 3D-like background with amazing visual effects
+ * Uses advanced CSS animations and gradients for stunning visuals
+ */
 export default function Interactive3D(): React.ReactElement {
   return (
     <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 1 }}
-      className="w-full h-[400px] md:h-[500px] relative"
+      initial={{ opacity: 0, scale: 0.9 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ duration: 1.2, ease: 'easeOut' }}
+      className="w-full h-[400px] md:h-[500px] relative overflow-hidden"
     >
-      <Canvas
-        camera={{ position: [0, 0, 10], fov: 60 }}
-        className="bg-transparent"
+      {/* Dynamic background with multiple gradients */}
+      <div className="absolute inset-0">
+        <motion.div
+          className="absolute inset-0 bg-gradient-to-br from-primary/10 via-blue-500/5 to-purple-500/10"
+          animate={{
+            background: [
+              'linear-gradient(135deg, hsl(142, 76%, 36%, 0.1) 0%, hsl(217, 91%, 60%, 0.05) 50%, hsl(271, 91%, 65%, 0.1) 100%)',
+              'linear-gradient(225deg, hsl(271, 91%, 65%, 0.1) 0%, hsl(142, 76%, 36%, 0.05) 50%, hsl(217, 91%, 60%, 0.1) 100%)',
+              'linear-gradient(315deg, hsl(217, 91%, 60%, 0.1) 0%, hsl(271, 91%, 65%, 0.05) 50%, hsl(142, 76%, 36%, 0.1) 100%)',
+            ],
+          }}
+          transition={{
+            duration: 8,
+            repeat: Infinity,
+            ease: 'easeInOut',
+          }}
+        />
+
+        {/* Radial gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-radial from-transparent via-primary/5 to-transparent" />
+      </div>
+
+      {/* Enhanced geometric shapes with different variants */}
+      <GeometricShape
+        className="top-1/4 left-1/4"
+        delay={0}
+        size="lg"
+        variant="hexagon"
+      />
+      <GeometricShape
+        className="top-3/4 right-1/4"
+        delay={1}
+        size="md"
+        variant="triangle"
+      />
+      <GeometricShape
+        className="top-1/2 right-1/3"
+        delay={2}
+        size="lg"
+        variant="square"
+      />
+      <GeometricShape
+        className="top-1/6 right-1/2"
+        delay={1.5}
+        size="sm"
+        variant="circle"
+      />
+      <GeometricShape
+        className="bottom-1/4 left-1/3"
+        delay={0.5}
+        size="md"
+        variant="hexagon"
+      />
+
+      {/* Enhanced floating particles with trails */}
+      {Array.from({ length: 8 }).map((_, i) => (
+        <motion.div
+          key={i}
+          className="absolute"
+          style={{
+            top: `${Math.random() * 80 + 10}%`,
+            left: `${Math.random() * 80 + 10}%`,
+          }}
+        >
+          <motion.div
+            className="w-3 h-3 rounded-full bg-gradient-to-r from-primary/60 to-blue-500/40 shadow-lg"
+            animate={{
+              y: [-20, 20, -20],
+              x: [-15, 15, -15],
+              opacity: [0.4, 1, 0.4],
+              scale: [0.8, 1.2, 0.8],
+            }}
+            transition={{
+              duration: 5 + i * 0.5,
+              repeat: Infinity,
+              ease: 'easeInOut',
+              delay: i * 0.3,
+            }}
+          />
+          {/* Particle trail effect */}
+          <motion.div
+            className="absolute top-0 left-0 w-1 h-1 rounded-full bg-primary/30"
+            animate={{
+              y: [-25, 25, -25],
+              x: [-20, 20, -20],
+              opacity: [0.2, 0.6, 0.2],
+            }}
+            transition={{
+              duration: 5 + i * 0.5,
+              repeat: Infinity,
+              ease: 'easeInOut',
+              delay: i * 0.3 + 0.1,
+            }}
+          />
+        </motion.div>
+      ))}
+
+      {/* Central orb with pulsing energy */}
+      <motion.div
+        className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
+        animate={{
+          scale: [1, 1.05, 1],
+          rotate: [0, 360],
+        }}
+        transition={{
+          duration: 15,
+          repeat: Infinity,
+          ease: 'linear',
+        }}
       >
-        <ambientLight intensity={0.5} />
-        <pointLight position={[10, 10, 10]} intensity={1} />
-        <pointLight
-          position={[-10, -10, -10]}
-          intensity={0.5}
-          color="#3b82f6"
-        />
+        <div className="relative">
+          {/* Outer ring */}
+          <motion.div
+            className="w-40 h-40 rounded-full border-2 border-primary/30 backdrop-blur-sm"
+            animate={{
+              scale: [1, 1.1, 1],
+              opacity: [0.3, 0.6, 0.3],
+            }}
+            transition={{
+              duration: 3,
+              repeat: Infinity,
+              ease: 'easeInOut',
+            }}
+          />
 
-        <AnimatedSphere position={[-3, 2, 0]} color="#ef4444" />
-        <AnimatedSphere position={[3, -1, 0]} color="#10b981" />
-        <AnimatedBox position={[0, 0, 0]} />
-        <AnimatedTorus position={[2, 2, -2]} />
-        <AnimatedTorus position={[-2, -2, 2]} />
+          {/* Inner orb */}
+          <motion.div
+            className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-20 h-20 rounded-full bg-gradient-to-br from-primary/40 to-purple-500/30 backdrop-blur-md shadow-2xl"
+            animate={{
+              scale: [1, 1.2, 1],
+              boxShadow: [
+                '0 0 20px hsla(142, 76%, 36%, 0.4)',
+                '0 0 40px hsla(142, 76%, 36%, 0.6)',
+                '0 0 20px hsla(142, 76%, 36%, 0.4)',
+              ],
+            }}
+            transition={{
+              duration: 2,
+              repeat: Infinity,
+              ease: 'easeInOut',
+            }}
+          />
 
-        <OrbitControls
-          enableZoom={false}
-          enablePan={false}
-          autoRotate
-          autoRotateSpeed={0.5}
+          {/* Energy particles around orb */}
+          {Array.from({ length: 6 }).map((_, i) => (
+            <motion.div
+              key={`orb-particle-${i}`}
+              className="absolute w-2 h-2 rounded-full bg-primary/80"
+              style={{
+                top: '50%',
+                left: '50%',
+                transformOrigin: '0 0',
+              }}
+              animate={{
+                rotate: [i * 60, i * 60 + 360],
+                x: [0, 60, 0],
+                opacity: [0.8, 0.3, 0.8],
+              }}
+              transition={{
+                duration: 4,
+                repeat: Infinity,
+                ease: 'easeInOut',
+                delay: i * 0.2,
+              }}
+            />
+          ))}
+        </div>
+      </motion.div>
+
+      {/* Ambient light rays */}
+      {Array.from({ length: 4 }).map((_, i) => (
+        <motion.div
+          key={`ray-${i}`}
+          className="absolute top-1/2 left-1/2 origin-left h-0.5 bg-gradient-to-r from-primary/20 to-transparent"
+          style={{
+            width: '200px',
+            transform: `translate(-50%, -50%) rotate(${i * 45}deg)`,
+          }}
+          animate={{
+            opacity: [0.2, 0.8, 0.2],
+            scaleX: [0.5, 1, 0.5],
+          }}
+          transition={{
+            duration: 3,
+            repeat: Infinity,
+            ease: 'easeInOut',
+            delay: i * 0.5,
+          }}
         />
-      </Canvas>
+      ))}
     </motion.div>
   )
 }

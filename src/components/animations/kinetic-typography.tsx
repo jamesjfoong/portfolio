@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useEffect, useRef, useState } from 'react'
+
 import { motion } from 'framer-motion'
 import { gsap } from 'gsap'
 import { TextPlugin } from 'gsap/TextPlugin'
@@ -28,7 +29,11 @@ export function KineticTypography({
     if (!textRef.current || texts.length === 0) return
 
     // Fallback for when GSAP TextPlugin isn't available
-    if (typeof window === 'undefined' || !gsap.plugins.TextPlugin) {
+    if (
+      typeof window === 'undefined' ||
+      !(gsap as unknown as { plugins?: { TextPlugin?: unknown } }).plugins
+        ?.TextPlugin
+    ) {
       const interval = setInterval(() => {
         setCurrentIndex(prev => (prev + 1) % texts.length)
       }, speed)
@@ -37,7 +42,7 @@ export function KineticTypography({
 
     const tl = gsap.timeline({ repeat: -1 })
 
-    texts.forEach((text, index) => {
+    texts.forEach((text, _index) => {
       tl.to(textRef.current, {
         duration: 0.8,
         text: text,
@@ -89,7 +94,7 @@ export function AnimatedText({
       opacity: 1,
       y: 0,
       transition: {
-        type: 'spring',
+        type: 'spring' as const,
         damping: 12,
         stiffness: 100,
       },
@@ -98,7 +103,7 @@ export function AnimatedText({
       opacity: 0,
       y: 20,
       transition: {
-        type: 'spring',
+        type: 'spring' as const,
         damping: 12,
         stiffness: 100,
       },

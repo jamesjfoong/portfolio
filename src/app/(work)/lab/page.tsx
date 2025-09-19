@@ -1,12 +1,14 @@
 'use client'
 
 import React from 'react'
+
 import { motion } from 'framer-motion'
 import { Beaker, Code, Cpu, Zap } from 'lucide-react'
 
+import Interactive3D from '@/components/animations/interactive-3d'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
-import Interactive3D from '@/components/animations/interactive-3d'
+import ShineCard from '@/components/ui/shine-card'
 import { fadeInUp, staggerContainer, staggerItem } from '@/lib/animations'
 
 // Sample experimental projects
@@ -80,13 +82,16 @@ export default function LabPage(): React.ReactElement {
             {experiments.map((experiment, index) => {
               const IconComponent = experiment.icon
               return (
-                <motion.div
+                <ShineCard
                   key={experiment.id}
-                  variants={fadeInUp}
-                  initial="initial"
-                  whileInView="animate"
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.1 }}
+                  motionProps={{
+                    variants: fadeInUp,
+                    initial: 'initial',
+                    whileInView: 'animate',
+                    viewport: { once: true },
+                    transition: { delay: index * 0.1 },
+                    whileHover: { y: -4 },
+                  }}
                   className="group bg-card border border-border rounded-lg p-6 hover:shadow-lg transition-all duration-300"
                 >
                   <div className="flex items-start justify-between mb-4">
@@ -133,7 +138,7 @@ export default function LabPage(): React.ReactElement {
                       Coming Soon
                     </Button>
                   </div>
-                </motion.div>
+                </ShineCard>
               )
             })}
           </div>
