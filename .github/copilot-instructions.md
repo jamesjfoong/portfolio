@@ -1,6 +1,8 @@
 # Copilot Instructions for Portfolio Project
 
-This project is a Next.js 15 portfolio, showcasing advanced frontend skills with a focus on performance, accessibility, and innovative user interactions. Follow these guidelines to be immediately productive as an AI coding agent:
+This project is a Next.js 15 portfolio, showcasing advanced frontend skills with
+a focus on performance, accessibility, and innovative user interactions. Follow
+these guidelines to be immediately productive as an AI coding agent:
 
 ## Architecture & Structure
 
@@ -14,10 +16,12 @@ This project is a Next.js 15 portfolio, showcasing advanced frontend skills with
 
 ## Component & File Patterns
 
-- Use **Server Components** by default; use **Client Components** only for interactivity, hooks, or browser APIs
+- Use **Server Components** by default; use **Client Components** only for
+  interactivity, hooks, or browser APIs
 - Component props and return types must always be typed
 - Prefer interfaces over types for object shapes
-- Use kebab-case for file names; PascalCase for components; camelCase for hooks/utils
+- Use kebab-case for file names; PascalCase for components; camelCase for
+  hooks/utils
 - Group related components in folders with `index.tsx` barrel exports
 - Example component:
   ```typescript
@@ -31,7 +35,8 @@ This project is a Next.js 15 portfolio, showcasing advanced frontend skills with
 
 ## Data & Content
 
-- Static data lives in `src/data/unified-data.ts` (migrate any JS data to TS interfaces)
+- Static data lives in `src/data/unified-data.ts` (migrate any JS data to TS
+  interfaces)
 - Content (projects, snippets) is in `src/content/`
 
 ## Developer Workflows
@@ -47,7 +52,8 @@ This project is a Next.js 15 portfolio, showcasing advanced frontend skills with
 - Optimize images with Next.js `Image` component
 - Use lazy loading and dynamic imports for code splitting
 - Target Core Web Vitals: LCP < 1.2s, FID < 100ms, CLS < 0.1
-- Ensure WCAG 2.1 AAA compliance, semantic HTML, ARIA labels, keyboard navigation
+- Ensure WCAG 2.1 AAA compliance, semantic HTML, ARIA labels, keyboard
+  navigation
 - Respect `prefers-reduced-motion` for animations
 
 ## Error Handling & SEO
@@ -71,8 +77,10 @@ This project is a Next.js 15 portfolio, showcasing advanced frontend skills with
 
 - See `.cursorrules` for detailed architecture and conventions
 - See `README.md` for getting started and deployment
-- Key directories: `src/components/`, `src/hooks/`, `src/lib/`, `src/data/`, `src/content/`, `src/types/`
+- Key directories: `src/components/`, `src/hooks/`, `src/lib/`, `src/data/`,
+  `src/content/`, `src/types/`
 
 ---
 
-**Every change should demonstrate senior-level frontend expertise: prioritize performance, accessibility, and user experience.**
+**Every change should demonstrate senior-level frontend expertise: prioritize
+performance, accessibility, and user experience.**

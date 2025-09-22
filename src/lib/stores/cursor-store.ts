@@ -1,27 +1,32 @@
-import { create } from 'zustand'
+import { create } from "zustand"
 
 interface CursorState {
   position: { x: number; y: number }
   isHovering: boolean
-  cursorVariant: 'default' | 'button' | 'link' | 'project'
+  cursorVariant: "default" | "button" | "link" | "project" | "text" | "hero" | "about" | "skills" | "footer"
   isClicking: boolean
-  trail: Array<{ x: number; y: number; id: number }>
+  trail: Array<{ x: number; y: number; id: number; timestamp: number }>
+  currentSection: string
 
   // Actions
-  updatePosition: (position: { x: number; y: number }) => void
-  setHovering: (hovering: boolean) => void
-  setCursorVariant: (variant: 'default' | 'button' | 'link' | 'project') => void
-  setClicking: (clicking: boolean) => void
-  addTrailPoint: (point: { x: number; y: number; id: number }) => void
+  updatePosition: (_position: { x: number; y: number }) => void
+  setHovering: (_hovering: boolean) => void
+  setCursorVariant: (
+    _variant: "default" | "button" | "link" | "project" | "text" | "hero" | "about" | "skills" | "footer"
+  ) => void
+  setClicking: (_clicking: boolean) => void
+  addTrailPoint: (_point: { x: number; y: number; id: number; timestamp: number }) => void
   clearTrail: () => void
+  setCurrentSection: (_section: string) => void
 }
 
 export const useCursorStore = create<CursorState>(set => ({
   position: { x: 0, y: 0 },
   isHovering: false,
-  cursorVariant: 'default',
+  cursorVariant: "default",
   isClicking: false,
   trail: [],
+  currentSection: "default",
 
   updatePosition: position => set({ position }),
 
@@ -32,9 +37,16 @@ export const useCursorStore = create<CursorState>(set => ({
   setClicking: clicking => set({ isClicking: clicking }),
 
   addTrailPoint: point =>
-    set(state => ({
-      trail: [...state.trail, point].slice(-6), // Keep only last 6 points
-    })),
+    set(state => {
+      const now = Date.now()
+      // Filter out old points for performance
+      const filteredTrail = state.trail.filter(p => now - p.timestamp < 1000)
+      return {
+        trail: [...filteredTrail, point].slice(-12), // Keep more points for smoother trail
+      }
+    }),
 
   clearTrail: () => set({ trail: [] }),
+
+  setCurrentSection: section => set({ currentSection: section }),
 }))

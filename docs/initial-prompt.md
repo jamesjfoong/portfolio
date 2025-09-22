@@ -4,13 +4,17 @@ Role: Senior Frontend Software Engineer with 3+ years of experience.
 
 ## **Executive Summary**
 
-Create a cutting-edge personal portfolio that demonstrates mastery of modern frontend development through innovative interactions, performance optimization, and exceptional user experience. This project should serve as both a technical showcase and a compelling narrative of your professional journey.
+Create a cutting-edge personal portfolio that demonstrates mastery of modern
+frontend development through innovative interactions, performance optimization,
+and exceptional user experience. This project should serve as both a technical
+showcase and a compelling narrative of your professional journey.
 
 ## **Project Vision**
 
 - **Theme**: Minimalistic futurism with sophisticated micro-interactions
 - **Target Audience**: Tech recruiters, potential clients, and fellow developers
-- **Key Differentiators**: Performance-first approach, accessibility excellence, and memorable user experience
+- **Key Differentiators**: Performance-first approach, accessibility excellence,
+  and memorable user experience
 
 ## **Technical Architecture**
 
@@ -81,8 +85,8 @@ my-portfolio/
 
 ```typescript
 interface HeroFeatures {
-  interactiveBackground: 'particle-field' | 'fluid-simulation'
-  textAnimation: 'typewriter-glitch' | 'morphing-text'
+  interactiveBackground: "particle-field" | "fluid-simulation"
+  textAnimation: "typewriter-glitch" | "morphing-text"
   ctaTracking: boolean
   personalization: {
     timeOfDay: boolean
@@ -103,7 +107,7 @@ interface HeroFeatures {
 ```typescript
 interface ProjectShowcase {
   media: {
-    type: 'video' | 'interactive-demo' | 'image-gallery'
+    type: "video" | "interactive-demo" | "image-gallery"
     lazyLoad: boolean
     optimizedFormats: string[]
   }
@@ -135,7 +139,7 @@ interface ProjectShowcase {
 const interactionConfig = {
   cursor: {
     magnetic: true,
-    trailEffect: 'gradient',
+    trailEffect: "gradient",
     contextualMorph: true,
   },
   scrollBehavior: {
@@ -144,9 +148,9 @@ const interactionConfig = {
     revealThreshold: 0.15,
   },
   transitions: {
-    pageChange: 'morphing-blob',
-    contentReveal: 'stagger-blur',
-    hover: 'elastic-scale',
+    pageChange: "morphing-blob",
+    contentReveal: "stagger-blur",
+    hover: "elastic-scale",
   },
 }
 ```
@@ -170,7 +174,7 @@ interface ContentSchema {
     analytics: AnalyticsConfig
   }
   content: {
-    format: 'mdx' | 'json' | 'yaml'
+    format: "mdx" | "json" | "yaml"
     version: string
     lastModified: Date
   }
@@ -227,11 +231,11 @@ interface SEOStrategy {
   }
   meta_tags: {
     dynamic_og_images: boolean
-    twitter_cards: 'summary_large_image'
+    twitter_cards: "summary_large_image"
     canonical_urls: boolean
   }
   performance: {
-    core_web_vitals: 'green'
+    core_web_vitals: "green"
     mobile_first: true
   }
 }
@@ -312,4 +316,7 @@ gantt
     Testing & Deploy     :2d
 ```
 
-This enhanced prompt provides a comprehensive blueprint for creating a truly exceptional portfolio that goes beyond typical showcases. It emphasizes performance, user experience, and technical excellence while maintaining the minimalistic and futuristic aesthetic you desire.
+This enhanced prompt provides a comprehensive blueprint for creating a truly
+exceptional portfolio that goes beyond typical showcases. It emphasizes
+performance, user experience, and technical excellence while maintaining the
+minimalistic and futuristic aesthetic you desire.

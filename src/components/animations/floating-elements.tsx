@@ -1,8 +1,8 @@
-'use client'
+"use client"
 
-import React from 'react'
+import React from "react"
 
-import { motion } from 'framer-motion'
+import { motion } from "framer-motion"
 
 interface FloatingDotProps {
   index: number
@@ -34,7 +34,7 @@ const FloatingDot: React.FC<FloatingDotProps> = ({ index }) => {
       transition={{
         duration: 6 + index,
         repeat: Infinity,
-        ease: 'easeInOut',
+        ease: "easeInOut",
         delay: index * 0.8,
       }}
     />
@@ -62,7 +62,7 @@ export default function FloatingElements(): React.ReactElement {
         transition={{
           duration: 30,
           repeat: Infinity,
-          ease: 'linear',
+          ease: "linear",
         }}
       />
 
@@ -74,7 +74,7 @@ export default function FloatingElements(): React.ReactElement {
         transition={{
           duration: 8,
           repeat: Infinity,
-          ease: 'easeInOut',
+          ease: "easeInOut",
         }}
       />
     </div>

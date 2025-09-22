@@ -1,8 +1,8 @@
-import React from 'react'
+import React from "react"
 
-import { motion } from 'framer-motion'
+import { motion } from "framer-motion"
 
-import { cn } from '@/lib/utils'
+import { cn } from "@/lib/utils"
 
 interface TimelineItem {
   id: string
@@ -20,12 +20,9 @@ interface TimelineProps {
   className?: string
 }
 
-export function Timeline({
-  items,
-  className,
-}: TimelineProps): React.ReactElement {
+export function Timeline({ items, className }: TimelineProps): React.ReactElement {
   return (
-    <div className={cn('relative', className)}>
+    <div className={cn("relative", className)}>
       {/* Timeline line */}
       <div className="absolute left-4 top-0 bottom-0 w-px bg-gradient-to-b from-primary/50 via-primary/30 to-transparent" />
 
@@ -43,18 +40,14 @@ export function Timeline({
             <div className="absolute left-0 top-2 flex items-center justify-center">
               <div
                 className={cn(
-                  'w-8 h-8 rounded-full border-2 bg-background flex items-center justify-center',
-                  item.current
-                    ? 'border-primary bg-primary/10'
-                    : 'border-muted-foreground/30'
+                  "w-8 h-8 rounded-full border-2 bg-background flex items-center justify-center",
+                  item.current ? "border-primary bg-primary/10" : "border-muted-foreground/30"
                 )}
               >
                 <div
                   className={cn(
-                    'w-3 h-3 rounded-full',
-                    item.current
-                      ? 'bg-primary animate-pulse'
-                      : 'bg-muted-foreground/50'
+                    "w-3 h-3 rounded-full",
+                    item.current ? "bg-primary animate-pulse" : "bg-muted-foreground/50"
                   )}
                 />
               </div>
@@ -64,9 +57,7 @@ export function Timeline({
             <div className="bg-card/50 backdrop-blur-sm border border-border/50 rounded-xl p-6 hover:shadow-lg transition-all duration-300 hover:border-primary/20">
               <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-3">
                 <div>
-                  <h3 className="text-lg font-semibold text-foreground">
-                    {item.title}
-                  </h3>
+                  <h3 className="text-lg font-semibold text-foreground">{item.title}</h3>
                   <p className="text-muted-foreground">{item.subtitle}</p>
                 </div>
                 <div className="flex items-center gap-2">
@@ -75,27 +66,18 @@ export function Timeline({
                       Current
                     </span>
                   )}
-                  <span className="text-sm text-muted-foreground whitespace-nowrap">
-                    {item.date}
-                  </span>
+                  <span className="text-sm text-muted-foreground whitespace-nowrap">{item.date}</span>
                 </div>
               </div>
 
-              <p className="text-muted-foreground mb-4 leading-relaxed">
-                {item.description}
-              </p>
+              <p className="text-muted-foreground mb-4 leading-relaxed">{item.description}</p>
 
               {item.achievements && item.achievements.length > 0 && (
                 <div className="mb-4">
-                  <h4 className="text-sm font-medium text-foreground mb-2">
-                    Key Achievements:
-                  </h4>
+                  <h4 className="text-sm font-medium text-foreground mb-2">Key Achievements:</h4>
                   <ul className="space-y-1">
                     {item.achievements.map((achievement, idx) => (
-                      <li
-                        key={idx}
-                        className="flex items-start gap-2 text-sm text-muted-foreground"
-                      >
+                      <li key={idx} className="flex items-start gap-2 text-sm text-muted-foreground">
                         <div className="w-1.5 h-1.5 bg-primary rounded-full mt-2 flex-shrink-0" />
                         <span>{achievement}</span>
                       </li>

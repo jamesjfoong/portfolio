@@ -1,8 +1,8 @@
-'use client'
+"use client"
 
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from "react"
 
-import './cursor-animation.css'
+import "./cursor-animation.css"
 
 interface CursorPosition {
   x: number
@@ -13,12 +13,31 @@ interface CursorPosition {
  * Simplified cursor animation with better performance
  * Removed complex store logic and trail effects for smoother experience
  */
-export default function CursorAnimation(): React.ReactElement {
+export default function CursorAnimation(): React.ReactElement | null {
   const [position, setPosition] = useState<CursorPosition>({ x: 0, y: 0 })
   const [isHovering, setIsHovering] = useState(false)
   const [isClicking, setIsClicking] = useState(false)
+  const [isMobile, setIsMobile] = useState(false)
+
+  // Check if device is mobile/touch device
+  useEffect(() => {
+    const checkIsMobile = () => {
+      const hasTouch = "ontouchstart" in window || navigator.maxTouchPoints > 0
+      const isMobileUA = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
+      const isSmallScreen = window.innerWidth < 768
+      setIsMobile(hasTouch || isMobileUA || isSmallScreen)
+    }
+
+    checkIsMobile()
+    window.addEventListener("resize", checkIsMobile)
+
+    return () => window.removeEventListener("resize", checkIsMobile)
+  }, [])
 
   useEffect(() => {
+    // Don't initialize cursor effects on mobile devices
+    if (isMobile) return
+
     let ticking = false
 
     const handleMouseMove = (event: MouseEvent) => {
@@ -39,27 +58,32 @@ export default function CursorAnimation(): React.ReactElement {
       if (!target) return
 
       const isInteractive =
-        target.tagName === 'BUTTON' ||
-        target.tagName === 'A' ||
-        target.closest('button') ||
-        target.closest('a') ||
+        target.tagName === "BUTTON" ||
+        target.tagName === "A" ||
+        target.closest("button") ||
+        target.closest("a") ||
         target.closest('[data-cursor="interactive"]')
 
       setIsHovering(Boolean(isInteractive))
     }
 
-    document.addEventListener('mousemove', handleMouseMove, { passive: true })
-    document.addEventListener('mousedown', handleMouseDown)
-    document.addEventListener('mouseup', handleMouseUp)
-    document.addEventListener('mouseover', handleMouseOver, { passive: true })
+    document.addEventListener("mousemove", handleMouseMove, { passive: true })
+    document.addEventListener("mousedown", handleMouseDown)
+    document.addEventListener("mouseup", handleMouseUp)
+    document.addEventListener("mouseover", handleMouseOver, { passive: true })
 
     return () => {
-      document.removeEventListener('mousemove', handleMouseMove)
-      document.removeEventListener('mousedown', handleMouseDown)
-      document.removeEventListener('mouseup', handleMouseUp)
-      document.removeEventListener('mouseover', handleMouseOver)
+      document.removeEventListener("mousemove", handleMouseMove)
+      document.removeEventListener("mousedown", handleMouseDown)
+      document.removeEventListener("mouseup", handleMouseUp)
+      document.removeEventListener("mouseover", handleMouseOver)
     }
-  }, [])
+  }, [isMobile])
+
+  // Don't render cursor animation on mobile devices
+  if (isMobile) {
+    return null
+  }
 
   return (
     <>
@@ -68,9 +92,9 @@ export default function CursorAnimation(): React.ReactElement {
         className="cursor-gradient"
         style={{
           background: `radial-gradient(400px at ${position.x}px ${position.y}px,
-            hsla(142, 76%, 36%, ${isHovering ? '0.15' : '0.08'}),
+            hsla(142, 76%, 36%, ${isHovering ? "0.15" : "0.08"}),
             transparent 70%)`,
-          transition: 'background 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+          transition: "background 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
         }}
       />
 
@@ -80,15 +104,13 @@ export default function CursorAnimation(): React.ReactElement {
         style={{
           left: position.x - 6,
           top: position.y - 6,
-          width: '12px',
-          height: '12px',
-          background: 'hsl(142, 76%, 36%)',
-          borderRadius: '50%',
-          transform: `scale(${isClicking ? '0.8' : isHovering ? '1.5' : '1'})`,
-          transition: 'transform 0.2s cubic-bezier(0.4, 0, 0.2, 1)',
-          boxShadow: isHovering
-            ? '0 0 20px hsla(142, 76%, 36%, 0.6)'
-            : '0 0 10px hsla(142, 76%, 36%, 0.4)',
+          width: "12px",
+          height: "12px",
+          background: "hsl(142, 76%, 36%)",
+          borderRadius: "50%",
+          transform: `scale(${isClicking ? "0.8" : isHovering ? "1.5" : "1"})`,
+          transition: "transform 0.2s cubic-bezier(0.4, 0, 0.2, 1)",
+          boxShadow: isHovering ? "0 0 20px hsla(142, 76%, 36%, 0.6)" : "0 0 10px hsla(142, 76%, 36%, 0.4)",
         }}
       />
     </>

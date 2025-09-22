@@ -1,10 +1,9 @@
-import ModernHero from '@/components/sections/modern-hero'
-import ProjectShowcase from '@/components/sections/project-showcase'
-import ShineCard from '@/components/ui/shine-card'
+import ModernHero from "@/components/sections/modern-hero"
+import ProjectShowcase from "@/components/sections/project-showcase"
+import { EnhancedCard } from "@/components/ui/enhanced-card"
+import personalData from "@/data/unified-data"
 
-import type { Social } from '@/types'
-
-import personalData from '@/data/unified-data'
+import type { Social } from "@/types"
 
 export default function Home() {
   const { name, title, bio, projects, socials, quote } = personalData
@@ -15,20 +14,25 @@ export default function Home() {
       <ModernHero data={{ name, title, quote, socials }} />
 
       {/* About Section */}
-      <section id="about" className="py-20 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-secondary/5 via-background to-primary/5" />
-        <div className="absolute top-10 right-10 w-64 h-64 bg-gradient-to-br from-primary/10 to-purple-500/5 rounded-full blur-3xl" />
-        <div className="absolute bottom-10 left-10 w-80 h-80 bg-gradient-to-br from-blue-500/5 to-cyan-500/10 rounded-full blur-3xl" />
+      <section id="about" data-section="about" className="py-20 relative overflow-hidden">
+        {/* Smooth gradient background that blends with hero */}
+        <div className="absolute inset-0 bg-gradient-to-br from-background via-secondary/3 to-background" />
+
+        {/* Enhanced transition from hero */}
+        <div className="absolute top-0 left-0 right-0 h-40 bg-gradient-to-b from-background via-background/80 to-transparent" />
+        <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-background via-background/60 to-transparent" />
+
+        {/* Subtle floating elements */}
+        <div className="absolute top-10 right-10 w-64 h-64 bg-gradient-to-br from-primary/8 to-purple-500/4 rounded-full blur-3xl opacity-60" />
+        <div className="absolute bottom-10 left-10 w-80 h-80 bg-gradient-to-br from-blue-500/4 to-cyan-500/6 rounded-full blur-3xl opacity-60" />
 
         <div className="container max-w-4xl mx-auto px-6 relative z-10">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-              About Me
-            </h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">About Me</h2>
             <div className="w-24 h-1 bg-gradient-to-r from-primary to-purple-500 mx-auto rounded-full" />
           </div>
-          <ShineCard
-            className="bg-card/50 backdrop-blur-sm border border-border/50 rounded-2xl p-8 md:p-12 shadow-xl hover:shadow-2xl transition-all duration-300"
+          <EnhancedCard
+            className="p-8 md:p-12"
             motionProps={{
               whileHover: { y: -2 },
               transition: { duration: 0.2 },
@@ -38,7 +42,7 @@ export default function Home() {
               className="prose prose-lg max-w-none text-muted-foreground leading-relaxed"
               dangerouslySetInnerHTML={{ __html: bio }}
             />
-          </ShineCard>
+          </EnhancedCard>
         </div>
       </section>
 
@@ -46,16 +50,18 @@ export default function Home() {
       <ProjectShowcase projects={projects} className="py-20" />
 
       {/* Footer */}
-      <footer className="relative py-16 overflow-hidden">
-        {/* Background */}
-        <div className="absolute inset-0 bg-gradient-to-br from-background via-secondary/5 to-primary/5" />
-        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
+      <footer data-section="footer" className="relative py-12 overflow-hidden">
+        {/* Seamless background transition */}
+        <div className="absolute inset-0 bg-gradient-to-br from-background via-secondary/3 to-background" />
 
-        {/* Floating elements */}
-        <div className="absolute top-8 left-1/4 w-32 h-32 bg-primary/5 rounded-full blur-2xl animate-pulse" />
+        {/* Enhanced smooth transition from projects section */}
+        <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-background via-background/80 to-transparent" />
+
+        {/* Subtle floating elements */}
+        <div className="absolute top-8 left-1/4 w-32 h-32 bg-primary/4 rounded-full blur-2xl opacity-60" />
         <div
-          className="absolute bottom-8 right-1/4 w-24 h-24 bg-purple-500/5 rounded-full blur-2xl animate-pulse"
-          style={{ animationDelay: '1s' }}
+          className="absolute bottom-8 right-1/4 w-24 h-24 bg-purple-500/4 rounded-full blur-2xl opacity-60"
+          style={{ animationDelay: "1s" }}
         />
 
         <div className="container max-w-6xl mx-auto px-6 relative z-10">
@@ -65,9 +71,7 @@ export default function Home() {
               <h3 className="text-2xl font-bold bg-gradient-to-r from-primary to-purple-500 bg-clip-text text-transparent mb-2">
                 James Jeremy Foong
               </h3>
-              <p className="text-muted-foreground text-sm">
-                Senior Software Development Engineer
-              </p>
+              <p className="text-muted-foreground text-sm">Senior Software Development Engineer</p>
             </div>
 
             {/* Social Links */}
@@ -90,9 +94,7 @@ export default function Home() {
 
             {/* Tech Stack */}
             <div className="text-center md:text-right">
-              <p className="text-sm text-muted-foreground mb-2">
-                Built with modern technologies
-              </p>
+              <p className="text-sm text-muted-foreground mb-2">Built with modern technologies</p>
               <div className="flex flex-wrap justify-center md:justify-end gap-2">
                 <span className="px-2 py-1 text-xs bg-gradient-to-r from-blue-500/10 to-cyan-500/5 text-blue-600 dark:text-blue-400 border border-blue-500/20 rounded-full">
                   Next.js 15
@@ -110,8 +112,7 @@ export default function Home() {
           {/* Bottom */}
           <div className="mt-12 pt-8 border-t border-border/30 text-center">
             <p className="text-xs text-muted-foreground">
-              © 2025 James Jeremy Foong. All rights reserved. • Designed &
-              Developed with ❤️
+              © 2025 James Jeremy Foong. All rights reserved. • Designed & Developed with ❤️
             </p>
           </div>
         </div>

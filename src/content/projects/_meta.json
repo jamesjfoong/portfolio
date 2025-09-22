@@ -9,9 +9,5 @@
     "game-development"
   ],
   "defaultSort": "recent",
-  "featured": [
-    "github-pr-review-mcp",
-    "groq-commit",
-    "catapa-landing-page"
-  ]
+  "featured": ["github-pr-review-mcp", "groq-commit", "catapa-landing-page"]
 }

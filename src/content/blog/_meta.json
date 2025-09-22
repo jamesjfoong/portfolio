@@ -1,12 +1,7 @@
 {
   "title": "Blog",
   "description": "Technical insights, tutorials, and thoughts on software development",
-  "categories": [
-    "tutorial",
-    "technical",
-    "opinion",
-    "case-study"
-  ],
+  "categories": ["tutorial", "technical", "opinion", "case-study"],
   "defaultSort": "recent",
   "featured": []
 }

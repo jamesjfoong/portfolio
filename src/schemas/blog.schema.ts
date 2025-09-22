@@ -1,4 +1,4 @@
-import { z } from 'zod'
+import { z } from "zod"
 
 export const blogPostSchema = z.object({
   id: z.string(),
@@ -7,7 +7,7 @@ export const blogPostSchema = z.object({
   description: z.string(),
   content: z.string(),
   excerpt: z.string(),
-  category: z.enum(['tutorial', 'technical', 'opinion', 'case-study']),
+  category: z.enum(["tutorial", "technical", "opinion", "case-study"]),
   tags: z.array(z.string()),
   publishedAt: z.string(),
   updatedAt: z.string().optional(),
@@ -19,11 +19,13 @@ export const blogPostSchema = z.object({
     avatar: z.string().optional(),
     bio: z.string().optional(),
   }),
-  seo: z.object({
-    title: z.string().optional(),
-    description: z.string().optional(),
-    keywords: z.array(z.string()).optional(),
-  }).optional(),
+  seo: z
+    .object({
+      title: z.string().optional(),
+      description: z.string().optional(),
+      keywords: z.array(z.string()).optional(),
+    })
+    .optional(),
 })
 
 export type BlogPostData = z.infer<typeof blogPostSchema>

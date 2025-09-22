@@ -1,4 +1,4 @@
-import {
+import type {
   BlogCategory,
   BlogStatus,
   ExperienceType,
@@ -8,7 +8,7 @@ import {
   SkillLevel,
   SocialPlatform,
   TechCategory,
-} from './enums'
+} from "./enums"
 
 export interface Social {
   platform: SocialPlatform

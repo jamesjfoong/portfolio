@@ -1,26 +1,25 @@
-'use client'
+"use client"
 
-import React from 'react'
-import Link from 'next/link'
-import { notFound } from 'next/navigation'
+import React from "react"
+import Link from "next/link"
+import { notFound } from "next/navigation"
 
-import { motion } from 'framer-motion'
-import { ArrowLeft, Calendar, Clock, Share2 } from 'lucide-react'
+import { motion } from "framer-motion"
+import { ArrowLeft, Calendar, Clock, Share2 } from "lucide-react"
 
-import { Badge } from '@/components/ui/badge'
-import { Button } from '@/components/ui/button'
-import { staggerContainer, staggerItem } from '@/lib/animations'
+import { Badge } from "@/components/ui/badge"
+import { Button } from "@/components/ui/button"
+import { staggerContainer, staggerItem } from "@/lib/animations"
 
-import { BlogCategory } from '@/types/enums'
+import { BlogCategory } from "@/types/enums"
 
 // Sample blog data - in a real app, this would come from a CMS or API
 const samplePosts = [
   {
-    id: '1',
-    slug: 'understanding-react-server-components',
-    title: 'Understanding React Server Components',
-    excerpt:
-      'A deep dive into React Server Components and how they change the way we think about React applications.',
+    id: "1",
+    slug: "understanding-react-server-components",
+    title: "Understanding React Server Components",
+    excerpt: "A deep dive into React Server Components and how they change the way we think about React applications.",
     content: `
       <p>React Server Components represent a fundamental shift in how we build React applications. They allow us to render components on the server, reducing the JavaScript bundle size and improving performance.</p>
 
@@ -39,11 +38,11 @@ const samplePosts = [
       <p>To use Server Components, you need to use a framework that supports them, like Next.js 13+ with the app directory.</p>
     `,
     category: BlogCategory.TECHNICAL,
-    publishedAt: '2024-01-15',
-    updatedAt: '2024-01-16',
+    publishedAt: "2024-01-15",
+    updatedAt: "2024-01-16",
     readingTime: 8,
-    tags: ['React', 'Next.js', 'Server Components'],
-    author: 'James Jeremy Foong',
+    tags: ["React", "Next.js", "Server Components"],
+    author: "James Jeremy Foong",
     featured: true,
   },
 ]
@@ -54,9 +53,7 @@ interface BlogPostPageProps {
   }>
 }
 
-export default function BlogPostPage({
-  params,
-}: BlogPostPageProps): React.ReactElement {
+export default function BlogPostPage({ params }: BlogPostPageProps): React.ReactElement {
   return <BlogPostContent params={params} />
 }
 
@@ -79,12 +76,7 @@ function BlogPostContent({ params }: BlogPostPageProps): React.ReactElement {
 
   return (
     <div className="container max-w-4xl mx-auto px-6 py-12">
-      <motion.div
-        variants={staggerContainer}
-        initial="initial"
-        animate="animate"
-        className="space-y-8"
-      >
+      <motion.div variants={staggerContainer} initial="initial" animate="animate" className="space-y-8">
         {/* Back Button */}
         <motion.div variants={staggerItem}>
           <Button variant="ghost" asChild className="mb-8">
@@ -100,36 +92,26 @@ function BlogPostContent({ params }: BlogPostPageProps): React.ReactElement {
           <div className="space-y-4">
             <div className="flex items-center gap-3">
               <Badge variant="secondary">
-                {post.category
-                  .replace('-', ' ')
-                  .replace(/\b\w/g, l => l.toUpperCase())}
+                {post.category.replace("-", " ").replace(/\b\w/g, (l: string) => l.toUpperCase())}
               </Badge>
               {post.featured && <Badge variant="default">Featured</Badge>}
             </div>
 
-            <h1 className="text-4xl md:text-5xl font-bold tracking-tight leading-tight">
-              {post.title}
-            </h1>
+            <h1 className="text-4xl md:text-5xl font-bold tracking-tight leading-tight">{post.title}</h1>
 
-            <p className="text-xl text-muted-foreground leading-relaxed">
-              {post.excerpt}
-            </p>
+            <p className="text-xl text-muted-foreground leading-relaxed">{post.excerpt}</p>
           </div>
 
           {/* Article Meta */}
           <div className="flex flex-wrap items-center gap-6 text-sm text-muted-foreground py-4 border-y border-border">
             <div className="flex items-center gap-2">
               <Calendar className="w-4 h-4" />
-              <span>
-                Published {new Date(post.publishedAt).toLocaleDateString()}
-              </span>
+              <span>Published {new Date(post.publishedAt).toLocaleDateString()}</span>
             </div>
             {post.updatedAt && (
               <div className="flex items-center gap-2">
                 <Calendar className="w-4 h-4" />
-                <span>
-                  Updated {new Date(post.updatedAt).toLocaleDateString()}
-                </span>
+                <span>Updated {new Date(post.updatedAt).toLocaleDateString()}</span>
               </div>
             )}
             <div className="flex items-center gap-2">
@@ -166,16 +148,12 @@ function BlogPostContent({ params }: BlogPostPageProps): React.ReactElement {
         </motion.article>
 
         {/* Article Footer */}
-        <motion.footer
-          variants={staggerItem}
-          className="pt-8 border-t border-border"
-        >
+        <motion.footer variants={staggerItem} className="pt-8 border-t border-border">
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
             <div>
               <h3 className="font-semibold mb-1">Written by {post.author}</h3>
               <p className="text-sm text-muted-foreground">
-                Senior Software Development Engineer passionate about modern web
-                technologies.
+                Senior Software Development Engineer passionate about modern web technologies.
               </p>
             </div>
             <div className="flex gap-2">
@@ -192,8 +170,7 @@ function BlogPostContent({ params }: BlogPostPageProps): React.ReactElement {
           <h2 className="text-2xl font-bold mb-6">Related Articles</h2>
           <div className="bg-secondary/5 rounded-lg p-6 text-center">
             <p className="text-muted-foreground">
-              More related articles coming soon! Stay tuned for more insights
-              and tutorials.
+              More related articles coming soon! Stay tuned for more insights and tutorials.
             </p>
           </div>
         </motion.section>

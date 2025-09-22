@@ -1,37 +1,38 @@
-'use client'
+"use client"
 
-import React from 'react'
-import Link from 'next/link'
+import React from "react"
+import Link from "next/link"
 
-import { motion } from 'framer-motion'
-import { Download, Mail, MapPin } from 'lucide-react'
+import { motion } from "framer-motion"
+import { Download, Mail, MapPin } from "lucide-react"
 
-import { AnimatedText } from '@/components/animations/kinetic-typography'
-import { Badge } from '@/components/ui/badge'
-import { Button } from '@/components/ui/button'
-import { Timeline } from '@/components/ui/timeline'
-import { staggerContainer, staggerItem } from '@/lib/animations'
-
-import personalData from '@/data/unified-data'
+import { AnimatedText } from "@/components/animations/kinetic-typography"
+import { Badge } from "@/components/ui/badge"
+import { Button } from "@/components/ui/button"
+import { Timeline } from "@/components/ui/timeline"
+import { staggerContainer, staggerItem } from "@/lib/animations"
+import personalData from "@/data/unified-data"
 
 export default function AboutPage(): React.ReactElement {
-  const { name, bio, location, email, education, skills, experiences } =
-    personalData
+  const { name, bio, location, email, education, skills, experiences } = personalData
 
-  const skillsByCategory = skills.reduce((acc, skill) => {
-    if (!acc[skill.category]) {
-      acc[skill.category] = []
-    }
-    acc[skill.category].push(skill)
-    return acc
-  }, {} as Record<string, typeof skills>)
+  const skillsByCategory = skills.reduce(
+    (acc, skill) => {
+      if (!acc[skill.category]) {
+        acc[skill.category] = []
+      }
+      acc[skill.category].push(skill)
+      return acc
+    },
+    {} as Record<string, typeof skills>
+  )
 
   // Transform experiences for timeline
   const timelineItems = experiences.map(exp => ({
     id: exp.id,
     title: exp.role,
     subtitle: `${exp.company} • ${exp.location}`,
-    date: `${exp.startDate} - ${exp.current ? 'Present' : exp.endDate || ''}`,
+    date: `${exp.startDate} - ${exp.current ? "Present" : exp.endDate || ""}`,
     description: exp.description,
     achievements: exp.achievements,
     technologies: exp.technologies.map(tech => tech.name),
@@ -40,25 +41,17 @@ export default function AboutPage(): React.ReactElement {
 
   return (
     <div className="container max-w-4xl mx-auto px-6 py-12">
-      <motion.div
-        variants={staggerContainer}
-        initial="initial"
-        animate="animate"
-        className="space-y-16"
-      >
+      <motion.div variants={staggerContainer} initial="initial" animate="animate" className="space-y-16">
         {/* Header */}
-        <motion.section
-          variants={staggerItem}
-          className="text-center space-y-6"
-        >
+        <motion.section variants={staggerItem} className="text-center space-y-6">
           <div className="relative w-32 h-32 mx-auto rounded-full overflow-hidden bg-secondary">
             {/* Placeholder for profile image */}
             <div className="w-full h-full bg-gradient-to-br from-primary/20 to-primary/5 flex items-center justify-center">
               <span className="text-4xl font-bold text-primary">
                 {name
-                  .split(' ')
+                  .split(" ")
                   .map(n => n[0])
-                  .join('')}
+                  .join("")}
               </span>
             </div>
           </div>
@@ -114,44 +107,38 @@ export default function AboutPage(): React.ReactElement {
         <motion.section variants={staggerItem} className="space-y-6">
           <h2 className="text-2xl font-semibold">Technical Skills</h2>
           <div className="space-y-6">
-            {Object.entries(skillsByCategory).map(
-              ([category, categorySkills]) => (
-                <div key={category} className="space-y-3">
-                  <h3 className="text-lg font-medium capitalize">
-                    {category.replace('-', ' ')}
-                  </h3>
-                  <div className="flex flex-wrap gap-2">
-                    {categorySkills.map(skill => {
-                      const getSkillVariant = (level: string) => {
-                        switch (level) {
-                          case 'expert':
-                            return 'default'
-                          case 'advanced':
-                            return 'skill'
-                          case 'intermediate':
-                            return 'secondary'
-                          default:
-                            return 'outline'
-                        }
+            {Object.entries(skillsByCategory).map(([category, categorySkills]) => (
+              <div key={category} className="space-y-3">
+                <h3 className="text-lg font-medium capitalize">{category.replace("-", " ")}</h3>
+                <div className="flex flex-wrap gap-2">
+                  {categorySkills.map(skill => {
+                    const getSkillVariant = (level: string) => {
+                      switch (level) {
+                        case "expert":
+                          return "default"
+                        case "advanced":
+                          return "skill"
+                        case "intermediate":
+                          return "secondary"
+                        default:
+                          return "outline"
                       }
+                    }
 
-                      return (
-                        <Badge
-                          key={skill.name}
-                          variant={getSkillVariant(skill.level)}
-                          className="text-sm hover:scale-105 transition-transform duration-200"
-                        >
-                          {skill.name}
-                          <span className="ml-1 text-xs opacity-70">
-                            ({skill.level})
-                          </span>
-                        </Badge>
-                      )
-                    })}
-                  </div>
+                    return (
+                      <Badge
+                        key={skill.name}
+                        variant={getSkillVariant(skill.level)}
+                        className="text-sm hover:scale-105 transition-transform duration-200"
+                      >
+                        {skill.name}
+                        <span className="ml-1 text-xs opacity-70">({skill.level})</span>
+                      </Badge>
+                    )
+                  })}
                 </div>
-              )
-            )}
+              </div>
+            ))}
           </div>
         </motion.section>
 
@@ -170,11 +157,6 @@ export default function AboutPage(): React.ReactElement {
               <p>
                 <strong>Concentration:</strong> {education.concentration}
               </p>
-              {education.minor && (
-                <p>
-                  <strong>Minor:</strong> {education.minor}
-                </p>
-              )}
               {education.gpa && (
                 <p>
                   <strong>GPA:</strong> {education.gpa}/4.0
@@ -185,15 +167,11 @@ export default function AboutPage(): React.ReactElement {
         </motion.section>
 
         {/* Call to Action */}
-        <motion.section
-          variants={staggerItem}
-          className="text-center py-12 bg-secondary/5 rounded-lg"
-        >
-          <h2 className="text-2xl font-semibold mb-4">Let's Work Together</h2>
+        <motion.section variants={staggerItem} className="text-center py-12 bg-secondary/5 rounded-lg">
+          <h2 className="text-2xl font-semibold mb-4">Let&apos;s Work Together</h2>
           <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
-            I'm always interested in new opportunities and collaborations.
-            Whether you have a project in mind or just want to chat about
-            technology, feel free to reach out!
+            I&apos;m always interested in new opportunities and collaborations. Whether you have a project in mind or
+            just want to chat about technology, feel free to reach out!
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button size="lg" asChild>

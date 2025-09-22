@@ -1,8 +1,8 @@
-'use client'
+"use client"
 
-import * as React from 'react'
+import * as React from "react"
 
-import { cn } from '@/lib/utils'
+import { cn } from "@/lib/utils"
 
 interface TooltipContextType {
   open: boolean
@@ -29,12 +29,7 @@ interface TooltipProps {
   onOpenChange?: (open: boolean) => void
 }
 
-const Tooltip: React.FC<TooltipProps> = ({
-  children,
-  defaultOpen = false,
-  open: controlledOpen,
-  onOpenChange,
-}) => {
+const Tooltip: React.FC<TooltipProps> = ({ children, defaultOpen = false, open: controlledOpen, onOpenChange }) => {
   const [internalOpen, setInternalOpen] = React.useState(defaultOpen)
   const open = controlledOpen !== undefined ? controlledOpen : internalOpen
 
@@ -48,11 +43,7 @@ const Tooltip: React.FC<TooltipProps> = ({
     [controlledOpen, onOpenChange]
   )
 
-  return (
-    <TooltipContext.Provider value={{ open, setOpen }}>
-      {children}
-    </TooltipContext.Provider>
-  )
+  return <TooltipContext.Provider value={{ open, setOpen }}>{children}</TooltipContext.Provider>
 }
 
 interface TooltipTriggerProps extends React.HTMLAttributes<HTMLElement> {
@@ -94,17 +85,17 @@ const TooltipTrigger = React.forwardRef<HTMLElement, TooltipTriggerProps>(
     )
   }
 )
-TooltipTrigger.displayName = 'TooltipTrigger'
+TooltipTrigger.displayName = "TooltipTrigger"
 
 interface TooltipContentProps extends React.HTMLAttributes<HTMLDivElement> {
-  side?: 'top' | 'right' | 'bottom' | 'left'
+  side?: "top" | "right" | "bottom" | "left"
   sideOffset?: number
-  align?: 'start' | 'center' | 'end'
+  align?: "start" | "center" | "end"
   alignOffset?: number
 }
 
 const TooltipContent = React.forwardRef<HTMLDivElement, TooltipContentProps>(
-  ({ className, side = 'top', sideOffset: _sideOffset = 4, ...props }, ref) => {
+  ({ className, side = "top", sideOffset: _sideOffset = 4, ...props }, ref) => {
     const context = React.useContext(TooltipContext)
 
     if (!context?.open) return null
@@ -114,17 +105,17 @@ const TooltipContent = React.forwardRef<HTMLDivElement, TooltipContentProps>(
         ref={ref}
         role="tooltip"
         className={cn(
-          'z-50 overflow-hidden rounded-md border bg-popover px-3 py-1.5 text-sm text-popover-foreground shadow-md',
-          'animate-in fade-in-0 zoom-in-95',
-          'data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95',
-          side === 'bottom' && 'slide-in-from-top-2',
-          side === 'left' && 'slide-in-from-right-2',
-          side === 'right' && 'slide-in-from-left-2',
-          side === 'top' && 'slide-in-from-bottom-2',
+          "z-50 overflow-hidden rounded-md border bg-popover px-3 py-1.5 text-sm text-popover-foreground shadow-md",
+          "animate-in fade-in-0 zoom-in-95",
+          "data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95",
+          side === "bottom" && "slide-in-from-top-2",
+          side === "left" && "slide-in-from-right-2",
+          side === "right" && "slide-in-from-left-2",
+          side === "top" && "slide-in-from-bottom-2",
           className
         )}
         style={{
-          position: 'absolute',
+          position: "absolute",
           zIndex: 50,
         }}
         {...props}
@@ -132,6 +123,6 @@ const TooltipContent = React.forwardRef<HTMLDivElement, TooltipContentProps>(
     )
   }
 )
-TooltipContent.displayName = 'TooltipContent'
+TooltipContent.displayName = "TooltipContent"
 
-export { Tooltip, TooltipContent, TooltipProvider,TooltipTrigger }
+export { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger }

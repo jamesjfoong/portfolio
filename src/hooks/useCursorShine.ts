@@ -1,6 +1,6 @@
-'use client'
+"use client"
 
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from "react"
 
 interface CursorPosition {
   x: number
@@ -12,6 +12,7 @@ interface UseCursorShineReturn {
   isHovered: boolean
   cursorPosition: CursorPosition
   shineStyle: React.CSSProperties
+  borderStyle: React.CSSProperties
 }
 
 /**
@@ -48,14 +49,14 @@ export function useCursorShine(): UseCursorShineReturn {
     const element = cardRef.current
     if (!element) return
 
-    element.addEventListener('mousemove', handleMouseMove, { passive: true })
-    element.addEventListener('mouseenter', handleMouseEnter)
-    element.addEventListener('mouseleave', handleMouseLeave)
+    element.addEventListener("mousemove", handleMouseMove, { passive: true })
+    element.addEventListener("mouseenter", handleMouseEnter)
+    element.addEventListener("mouseleave", handleMouseLeave)
 
     return () => {
-      element.removeEventListener('mousemove', handleMouseMove)
-      element.removeEventListener('mouseenter', handleMouseEnter)
-      element.removeEventListener('mouseleave', handleMouseLeave)
+      element.removeEventListener("mousemove", handleMouseMove)
+      element.removeEventListener("mouseenter", handleMouseEnter)
+      element.removeEventListener("mouseleave", handleMouseLeave)
     }
   }, [handleMouseMove, handleMouseEnter, handleMouseLeave])
 
@@ -66,8 +67,20 @@ export function useCursorShine(): UseCursorShineReturn {
           hsla(142, 76%, 36%, 0.4) 0%,
           hsla(142, 76%, 36%, 0.2) 25%,
           transparent 50%)`
-      : 'transparent',
-    transition: isHovered ? 'none' : 'background 0.3s ease-out',
+      : "transparent",
+    transition: isHovered ? "none" : "background 0.3s ease-out",
+  }
+
+  // Create enhanced border highlighting effect
+  const borderStyle: React.CSSProperties = {
+    background: isHovered
+      ? `radial-gradient(600px circle at ${cursorPosition.x}px ${cursorPosition.y}px,
+          hsla(142, 76%, 36%, 0.8) 0%,
+          hsla(142, 76%, 36%, 0.4) 20%,
+          hsla(142, 76%, 36%, 0.1) 40%,
+          transparent 70%)`
+      : "transparent",
+    transition: isHovered ? "none" : "background 0.3s ease-out",
   }
 
   return {
@@ -75,5 +88,6 @@ export function useCursorShine(): UseCursorShineReturn {
     isHovered,
     cursorPosition,
     shineStyle,
+    borderStyle,
   }
 }

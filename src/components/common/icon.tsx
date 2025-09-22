@@ -1,10 +1,7 @@
-import React from 'react'
+import type React from "react"
 
-import { IconDefinition } from '@fortawesome/fontawesome-svg-core'
-import {
-  FontAwesomeIcon,
-  FontAwesomeIconProps,
-} from '@fortawesome/react-fontawesome'
+import type { IconDefinition } from "@fortawesome/fontawesome-svg-core"
+import { FontAwesomeIcon, type FontAwesomeIconProps } from "@fortawesome/react-fontawesome"
 
 interface IconProps extends FontAwesomeIconProps {
   icon: IconDefinition

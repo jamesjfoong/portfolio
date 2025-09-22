@@ -14,6 +14,7 @@
   inset: 0;
   z-index: 30;
   transition: all 300ms ease-out;
+  will-change: transform, opacity;
 }
 
 .cursor-dot {
@@ -22,4 +23,37 @@
   z-index: 40;
   border-radius: 50%;
   transition: all 200ms ease-out;
+  will-change: transform, width, height;
+}
+
+.cursor-trail-point {
+  pointer-events: none;
+  position: fixed;
+  will-change: transform, opacity;
+}
+
+.cursor-particle {
+  pointer-events: none;
+  position: fixed;
+  will-change: transform, opacity;
+}
+
+@keyframes particle-fade {
+  0% {
+    opacity: 0.6;
+    transform: scale(1) translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.3) translateY(-20px);
+  }
+}
+
+@media (pointer: coarse) {
+  .cursor-gradient,
+  .cursor-dot,
+  .cursor-trail-point,
+  .cursor-particle {
+    display: none;
+  }
 }

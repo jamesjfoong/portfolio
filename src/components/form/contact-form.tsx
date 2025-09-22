@@ -1,35 +1,19 @@
-'use client'
+"use client"
 
-import React from 'react'
-import { useForm } from 'react-hook-form'
+import React from "react"
+import { useForm } from "react-hook-form"
 
-import { zodResolver } from '@hookform/resolvers/zod'
-import { motion } from 'framer-motion'
-import { Send } from 'lucide-react'
+import { zodResolver } from "@hookform/resolvers/zod"
+import { motion } from "framer-motion"
+import { Send } from "lucide-react"
 
-import { Button } from '@/components/ui/button'
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card'
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from '@/components/ui/form'
-import { Input } from '@/components/ui/input'
-import { Textarea } from '@/components/ui/textarea'
+import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
+import { Input } from "@/components/ui/input"
+import { Textarea } from "@/components/ui/textarea"
 
-import {
-  type ContactFormData,
-  contactFormSchema,
-} from '@/schemas/contact.schema'
+import { type ContactFormData, contactFormSchema } from "@/schemas/contact.schema"
 
 /**
  * Contact form component using shadcn/ui and proper validation
@@ -39,10 +23,10 @@ export default function ContactForm(): React.ReactElement {
   const form = useForm<ContactFormData>({
     resolver: zodResolver(contactFormSchema),
     defaultValues: {
-      name: '',
-      email: '',
-      subject: '',
-      message: '',
+      name: "",
+      email: "",
+      subject: "",
+      message: "",
       consent: false,
     },
   })
@@ -50,7 +34,7 @@ export default function ContactForm(): React.ReactElement {
   const onSubmit = async (data: ContactFormData) => {
     // TODO: Implement actual form submission
     // eslint-disable-next-line no-console
-    console.log('Form submitted:', data)
+    console.log("Form submitted:", data)
 
     // Simulate API call
     await new Promise(resolve => setTimeout(resolve, 1000))
@@ -67,12 +51,9 @@ export default function ContactForm(): React.ReactElement {
     >
       <Card className="border-border/50 bg-card/80 backdrop-blur-sm">
         <CardHeader>
-          <CardTitle className="text-2xl font-semibold text-foreground">
-            Get In Touch
-          </CardTitle>
+          <CardTitle className="text-2xl font-semibold text-foreground">Get In Touch</CardTitle>
           <CardDescription className="text-muted-foreground">
-            I'd love to hear from you. Send me a message and I'll respond as
-            soon as possible.
+            I'd love to hear from you. Send me a message and I'll respond as soon as possible.
           </CardDescription>
         </CardHeader>
         <CardContent>

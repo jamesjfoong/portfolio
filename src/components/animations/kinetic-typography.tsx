@@ -1,13 +1,13 @@
-'use client'
+"use client"
 
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from "react"
 
-import { motion } from 'framer-motion'
-import { gsap } from 'gsap'
-import { TextPlugin } from 'gsap/TextPlugin'
+import { motion } from "framer-motion"
+import { gsap } from "gsap"
+import { TextPlugin } from "gsap/TextPlugin"
 
 // Register GSAP plugins
-if (typeof window !== 'undefined') {
+if (typeof window !== "undefined") {
   gsap.registerPlugin(TextPlugin)
 }
 
@@ -17,11 +17,7 @@ interface KineticTypographyProps {
   speed?: number
 }
 
-export function KineticTypography({
-  texts,
-  className = '',
-  speed = 2000,
-}: KineticTypographyProps): React.ReactElement {
+export function KineticTypography({ texts, className = "", speed = 2000 }: KineticTypographyProps): React.ReactElement {
   const textRef = useRef<HTMLSpanElement>(null)
   const [currentIndex, setCurrentIndex] = useState(0)
 
@@ -30,9 +26,8 @@ export function KineticTypography({
 
     // Fallback for when GSAP TextPlugin isn't available
     if (
-      typeof window === 'undefined' ||
-      !(gsap as unknown as { plugins?: { TextPlugin?: unknown } }).plugins
-        ?.TextPlugin
+      typeof window === "undefined" ||
+      !(gsap as unknown as { plugins?: { TextPlugin?: unknown } }).plugins?.TextPlugin
     ) {
       const interval = setInterval(() => {
         setCurrentIndex(prev => (prev + 1) % texts.length)
@@ -45,14 +40,14 @@ export function KineticTypography({
     texts.forEach((text, _index) => {
       tl.to(textRef.current, {
         duration: 0.8,
-        text: text,
-        ease: 'none',
+        text,
+        ease: "none",
       })
         .to({}, { duration: speed / 1000 }) // Pause
         .to(textRef.current, {
           duration: 0.3,
-          text: '',
-          ease: 'none',
+          text: "",
+          ease: "none",
         })
     })
 
@@ -63,7 +58,7 @@ export function KineticTypography({
 
   return (
     <span ref={textRef} className={`inline-block min-h-[1.2em] ${className}`}>
-      {textRef.current?.textContent || texts[currentIndex] || texts[0] || ''}
+      {textRef.current?.textContent || texts[currentIndex] || texts[0] || ""}
     </span>
   )
 }
@@ -74,12 +69,8 @@ interface AnimatedTextProps {
   delay?: number
 }
 
-export function AnimatedText({
-  text,
-  className = '',
-  delay = 0,
-}: AnimatedTextProps): React.ReactElement {
-  const letters = text.split('')
+export function AnimatedText({ text, className = "", delay = 0 }: AnimatedTextProps): React.ReactElement {
+  const letters = text.split("")
 
   const container = {
     hidden: { opacity: 0 },
@@ -94,7 +85,7 @@ export function AnimatedText({
       opacity: 1,
       y: 0,
       transition: {
-        type: 'spring' as const,
+        type: "spring" as const,
         damping: 12,
         stiffness: 100,
       },
@@ -103,7 +94,7 @@ export function AnimatedText({
       opacity: 0,
       y: 20,
       transition: {
-        type: 'spring' as const,
+        type: "spring" as const,
         damping: 12,
         stiffness: 100,
       },
@@ -111,15 +102,10 @@ export function AnimatedText({
   }
 
   return (
-    <motion.span
-      className={`inline-block ${className}`}
-      variants={container}
-      initial="hidden"
-      animate="visible"
-    >
+    <motion.span className={`inline-block ${className}`} variants={container} initial="hidden" animate="visible">
       {letters.map((letter, index) => (
         <motion.span key={index} className="inline-block" variants={child}>
-          {letter === ' ' ? '\u00A0' : letter}
+          {letter === " " ? "\u00A0" : letter}
         </motion.span>
       ))}
     </motion.span>
@@ -131,18 +117,15 @@ interface GlitchTextProps {
   className?: string
 }
 
-export function GlitchText({
-  text,
-  className = '',
-}: GlitchTextProps): React.ReactElement {
+export function GlitchText({ text, className = "" }: GlitchTextProps): React.ReactElement {
   return (
     <div className={`relative inline-block ${className}`}>
       <span className="relative z-10">{text}</span>
       <span
         className="absolute top-0 left-0 text-red-500 opacity-70 animate-pulse"
         style={{
-          animation: 'glitch-1 0.3s infinite linear alternate-reverse',
-          clipPath: 'polygon(0 0, 100% 0, 100% 45%, 0 45%)',
+          animation: "glitch-1 0.3s infinite linear alternate-reverse",
+          clipPath: "polygon(0 0, 100% 0, 100% 45%, 0 45%)",
         }}
       >
         {text}
@@ -150,13 +133,13 @@ export function GlitchText({
       <span
         className="absolute top-0 left-0 text-blue-500 opacity-70 animate-pulse"
         style={{
-          animation: 'glitch-2 0.3s infinite linear alternate-reverse',
-          clipPath: 'polygon(0 60%, 100% 60%, 100% 100%, 0 100%)',
+          animation: "glitch-2 0.3s infinite linear alternate-reverse",
+          clipPath: "polygon(0 60%, 100% 60%, 100% 100%, 0 100%)",
         }}
       >
         {text}
       </span>
-      <style jsx>{`
+      <style>{`
         @keyframes glitch-1 {
           0% {
             transform: translate(0);
@@ -207,11 +190,8 @@ interface WaveTextProps {
   className?: string
 }
 
-export function WaveText({
-  text,
-  className = '',
-}: WaveTextProps): React.ReactElement {
-  const letters = text.split('')
+export function WaveText({ text, className = "" }: WaveTextProps): React.ReactElement {
+  const letters = text.split("")
 
   return (
     <div className={`inline-flex ${className}`}>
@@ -226,10 +206,10 @@ export function WaveText({
             duration: 1,
             repeat: Infinity,
             delay: index * 0.1,
-            ease: 'easeInOut',
+            ease: "easeInOut",
           }}
         >
-          {letter === ' ' ? '\u00A0' : letter}
+          {letter === " " ? "\u00A0" : letter}
         </motion.span>
       ))}
     </div>
