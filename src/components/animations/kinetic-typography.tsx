@@ -3,13 +3,6 @@
 import React, { useEffect, useRef, useState } from "react"
 
 import { motion } from "framer-motion"
-import { gsap } from "gsap"
-import { TextPlugin } from "gsap/TextPlugin"
-
-// Register GSAP plugins
-if (typeof window !== "undefined") {
-  gsap.registerPlugin(TextPlugin)
-}
 
 interface KineticTypographyProps {
   texts: string[]
@@ -18,49 +11,19 @@ interface KineticTypographyProps {
 }
 
 export function KineticTypography({ texts, className = "", speed = 2000 }: KineticTypographyProps): React.ReactElement {
-  const textRef = useRef<HTMLSpanElement>(null)
   const [currentIndex, setCurrentIndex] = useState(0)
 
   useEffect(() => {
-    if (!textRef.current || texts.length === 0) return
+    if (texts.length === 0) return
 
-    // Fallback for when GSAP TextPlugin isn't available
-    if (
-      typeof window === "undefined" ||
-      !(gsap as unknown as { plugins?: { TextPlugin?: unknown } }).plugins?.TextPlugin
-    ) {
-      const interval = setInterval(() => {
-        setCurrentIndex(prev => (prev + 1) % texts.length)
-      }, speed)
-      return () => clearInterval(interval)
-    }
+    const interval = setInterval(() => {
+      setCurrentIndex(prev => (prev + 1) % texts.length)
+    }, speed)
 
-    const tl = gsap.timeline({ repeat: -1 })
-
-    texts.forEach((text, _index) => {
-      tl.to(textRef.current, {
-        duration: 0.8,
-        text,
-        ease: "none",
-      })
-        .to({}, { duration: speed / 1000 }) // Pause
-        .to(textRef.current, {
-          duration: 0.3,
-          text: "",
-          ease: "none",
-        })
-    })
-
-    return () => {
-      tl.kill()
-    }
+    return () => clearInterval(interval)
   }, [texts, speed])
 
-  return (
-    <span ref={textRef} className={`inline-block min-h-[1.2em] ${className}`}>
-      {textRef.current?.textContent || texts[currentIndex] || texts[0] || ""}
-    </span>
-  )
+  return <span className={`inline-block min-h-[1.2em] ${className}`}>{texts[currentIndex] || texts[0] || ""}</span>
 }
 
 interface AnimatedTextProps {

@@ -6,6 +6,17 @@ interface PerformanceMetrics {
   isLowEndDevice: boolean
 }
 
+interface NetworkConnection {
+  effectiveType?: "slow-2g" | "2g" | "3g" | "4g"
+  saveData?: boolean
+}
+
+interface NavigatorWithConnection extends Navigator {
+  connection?: NetworkConnection
+  mozConnection?: NetworkConnection
+  webkitConnection?: NetworkConnection
+}
+
 export function usePerformance(): PerformanceMetrics {
   const [metrics, setMetrics] = useState<PerformanceMetrics>({
     isSlowConnection: false,
@@ -15,8 +26,11 @@ export function usePerformance(): PerformanceMetrics {
 
   useEffect(() => {
     // Check for slow connection
+    const navigatorWithConnection = navigator as NavigatorWithConnection
     const connection =
-      (navigator as any).connection || (navigator as any).mozConnection || (navigator as any).webkitConnection
+      navigatorWithConnection.connection ||
+      navigatorWithConnection.mozConnection ||
+      navigatorWithConnection.webkitConnection
     const isSlowConnection = connection
       ? connection.effectiveType === "slow-2g" || connection.effectiveType === "2g" || connection.saveData === true
       : false
@@ -98,4 +112,3 @@ export function usePreloadCriticalResources() {
     })
   }, [])
 }
-

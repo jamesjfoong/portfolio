@@ -20,7 +20,7 @@ export default async function ProjectPage({ params }: ProjectPageProps): Promise
     notFound()
   }
 
-  // Load MDX content on the server side
+  // Load MDX content with safe error handling
   let serializedMdx: SerializedMDXContent["serialized"] | null = null
   let contentError: string | null = null
 
@@ -31,10 +31,8 @@ export default async function ProjectPage({ params }: ProjectPageProps): Promise
       serializedMdx = data.serialized
     } else {
       contentError = result.error.message
-      console.warn("Failed to load MDX content:", result.error)
     }
-  } catch (error) {
-    console.error("Error loading content:", error)
+  } catch {
     contentError = "Failed to load content"
   }
 

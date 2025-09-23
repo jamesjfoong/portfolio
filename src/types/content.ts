@@ -6,6 +6,9 @@ export interface ContentMetadata {
   tags?: string[]
   category?: string
   featured?: boolean
+  readingTime?: number
+  author?: string
+  slug?: string
 }
 
 export interface ContentData {

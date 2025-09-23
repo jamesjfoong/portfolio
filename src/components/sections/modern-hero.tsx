@@ -8,7 +8,7 @@ import { ArrowRight, Github, Linkedin, Mail } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
 import { useTypingEffect } from "@/hooks/useTypingEffect"
-import { fadeInUp, staggerContainer, staggerItem } from "@/lib/animations"
+import { fadeInUp, staggerContainer } from "@/lib/animations"
 
 import type { PersonalData } from "@/types"
 

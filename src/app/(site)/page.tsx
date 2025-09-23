@@ -1,9 +1,25 @@
+import { Github, Linkedin, Mail } from "lucide-react"
+
 import ModernHero from "@/components/sections/modern-hero"
 import ProjectShowcase from "@/components/sections/project-showcase"
 import { EnhancedCard } from "@/components/ui/enhanced-card"
 import personalData from "@/data/unified-data"
 
 import type { Social } from "@/types"
+
+function getIconForPlatform(platform: string) {
+  switch (platform.toLowerCase()) {
+    case "github":
+      return Github
+    case "linkedin":
+      return Linkedin
+    case "email":
+    case "mail":
+      return Mail
+    default:
+      return Github
+  }
+}
 
 export default function Home() {
   const { name, title, bio, projects, socials, quote } = personalData
@@ -76,20 +92,22 @@ export default function Home() {
 
             {/* Social Links */}
             <div className="flex justify-center gap-4">
-              {socials.map((social: Social) => (
-                <a
-                  key={social.platform}
-                  href={social.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group relative p-3 rounded-full bg-card/50 border border-border/50 hover:border-primary/50 transition-all duration-300 hover:scale-110 hover:shadow-lg"
-                >
-                  <span className="text-muted-foreground group-hover:text-primary transition-colors text-sm font-medium">
-                    {social.platform.toUpperCase()}
-                  </span>
-                  <div className="absolute inset-0 rounded-full bg-primary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                </a>
-              ))}
+              {socials.map((social: Social) => {
+                const Icon = getIconForPlatform(social.platform)
+                return (
+                  <a
+                    key={social.platform}
+                    href={social.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group relative p-3 rounded-full bg-card/50 border border-border/50 hover:border-primary/50 transition-all duration-300 hover:scale-110 hover:shadow-lg"
+                    title={`Connect on ${social.platform}`}
+                  >
+                    <Icon className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors" />
+                    <div className="absolute inset-0 rounded-full bg-primary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  </a>
+                )
+              })}
             </div>
 
             {/* Tech Stack */}
@@ -112,7 +130,7 @@ export default function Home() {
           {/* Bottom */}
           <div className="mt-12 pt-8 border-t border-border/30 text-center">
             <p className="text-xs text-muted-foreground">
-              © 2025 James Jeremy Foong. All rights reserved. • Designed & Developed with ❤️
+              © {new Date().getFullYear()} James Jeremy Foong. All rights reserved. • Designed & Developed with ❤️
             </p>
           </div>
         </div>

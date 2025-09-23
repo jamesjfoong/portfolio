@@ -41,13 +41,14 @@ export default function LazyImage({
     setIsLoading(false)
   }
 
-  const handleError = () => {
+  const handleError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
+    console.error(`❌ Image failed to load: ${src}`, e)
     setIsLoading(false)
     setHasError(true)
   }
 
   return (
-    <div className={cn("relative overflow-hidden", className)}>
+    <div className={cn("relative overflow-hidden w-full h-full", className)}>
       {/* Loading skeleton */}
       {isLoading && (
         <motion.div
@@ -73,32 +74,34 @@ export default function LazyImage({
       )}
 
       {/* Actual image */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: isLoading ? 0 : 1 }}
-        transition={{ duration: 0.3 }}
-        className="relative w-full h-full"
-      >
-        <Image
-          src={src}
-          alt={alt}
-          width={width}
-          height={height}
-          fill={fill}
-          sizes={sizes}
-          priority={priority}
-          quality={quality}
-          placeholder={placeholder}
-          blurDataURL={blurDataURL}
-          onLoad={handleLoad}
-          onError={handleError}
-          className={cn(
-            "object-cover transition-transform duration-300",
-            !isLoading && "scale-100",
-            isLoading && "scale-105"
-          )}
-        />
-      </motion.div>
+      {!hasError && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: isLoading ? 0 : 1 }}
+          transition={{ duration: 0.3 }}
+          className="absolute inset-0"
+        >
+          <Image
+            src={src}
+            alt={alt}
+            width={width}
+            height={height}
+            fill={fill}
+            sizes={sizes}
+            priority={priority}
+            quality={quality}
+            placeholder={placeholder}
+            blurDataURL={blurDataURL}
+            onLoad={handleLoad}
+            onError={handleError}
+            className={cn(
+              "object-cover transition-transform duration-300",
+              !isLoading && "scale-100",
+              isLoading && "scale-105"
+            )}
+          />
+        </motion.div>
+      )}
     </div>
   )
 }

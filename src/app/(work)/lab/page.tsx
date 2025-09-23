@@ -8,7 +8,7 @@ import { Beaker, Code, Cpu, Zap } from "lucide-react"
 import Interactive3D from "@/components/animations/interactive-3d"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
-import ShineCard from "@/components/ui/shine-card"
+import { EnhancedCard } from "@/components/ui/enhanced-card"
 import { fadeInUp, staggerContainer, staggerItem } from "@/lib/animations"
 
 // Sample experimental projects
@@ -71,8 +71,10 @@ export default function LabPage(): React.ReactElement {
             {experiments.map((experiment, index) => {
               const IconComponent = experiment.icon
               return (
-                <ShineCard
+                <EnhancedCard
                   key={experiment.id}
+                  enableShine={true}
+                  enableBorderHighlight={true}
                   motionProps={{
                     variants: fadeInUp,
                     initial: "initial",
@@ -111,7 +113,7 @@ export default function LabPage(): React.ReactElement {
                       Coming Soon
                     </Button>
                   </div>
-                </ShineCard>
+                </EnhancedCard>
               )
             })}
           </div>

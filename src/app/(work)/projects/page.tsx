@@ -11,14 +11,15 @@ import ProjectCard from "@/components/ui/project-card"
 import { fadeInUp, staggerContainer, staggerItem } from "@/lib/animations"
 import personalData from "@/data/unified-data"
 
-import { ProjectCategory } from "@/types/enums"
+import type { ProjectCategory } from "@/types/enums"
 
 export default function ProjectsPage(): React.ReactElement {
   const [searchQuery, setSearchQuery] = useState("")
   const [selectedCategory, setSelectedCategory] = useState<ProjectCategory | "all">("all")
   const { projects } = personalData
 
-  const categories = Object.values(ProjectCategory)
+  // Dynamically get categories from actual project data
+  const categories = Array.from(new Set(projects.map(project => project.category))).sort() // Sort alphabetically for consistency
 
   const filteredProjects = projects.filter(project => {
     const matchesSearch =

@@ -13,7 +13,6 @@ const navigation = [
   { name: "Home", href: "/" },
   { name: "Blog", href: "/blog" },
   { name: "Projects", href: "/projects" },
-  { name: "Lab", href: "/lab" },
   { name: "About", href: "/about" },
 ]
 
@@ -67,7 +66,7 @@ export default function MainNav(): React.ReactElement {
         }}
         transition={{ duration: 0.2, ease: "easeInOut" }}
       >
-        <nav className="relative bg-background/80 backdrop-blur-xl border border-border/30 rounded-3xl px-6 py-3 shadow-lg hover:shadow-xl hover:border-primary/20 transition-all duration-300 ease-out group overflow-hidden">
+        <nav className="relative bg-background/80 backdrop-blur-xl border border-border/30 rounded-3xl px-6 py-3 shadow-lg hover:shadow-xl hover:border-primary/20 transition-all duration-300 ease-out group overflow-hidden cursor-pointer">
           {/* Fluid background effect */}
           <div className="absolute inset-0 bg-gradient-to-r from-primary/5 via-transparent to-purple-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-out" />
           <div className="absolute inset-0 bg-gradient-to-br from-transparent via-primary/3 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 ease-out" />
@@ -79,13 +78,20 @@ export default function MainNav(): React.ReactElement {
                   key={item.href}
                   href={item.href}
                   className={cn(
-                    "relative px-4 py-2.5 text-sm font-medium transition-all duration-300 ease-out rounded-xl z-10",
+                    "relative px-4 py-2.5 text-sm font-medium transition-all duration-300 ease-out rounded-xl z-10 cursor-pointer",
                     "hover:scale-105 hover:shadow-sm",
                     "before:absolute before:inset-0 before:rounded-xl before:bg-gradient-to-r before:from-primary/10 before:to-purple-500/10",
                     "before:opacity-0 before:transition-opacity before:duration-300 hover:before:opacity-100",
+                    "active:scale-95", // Add click feedback
                     isActive ? "text-primary shadow-sm" : "text-foreground/70 hover:text-foreground hover:text-primary"
                   )}
-                  onClick={() => setActiveItem(item.href)}
+                  onClick={() => {
+                    setActiveItem(item.href)
+                    // Add subtle haptic feedback for supported devices
+                    if (typeof window !== "undefined" && "vibrate" in navigator) {
+                      navigator.vibrate(50)
+                    }
+                  }}
                 >
                   {item.name}
                   {isActive && (
@@ -172,11 +178,18 @@ export default function MainNav(): React.ReactElement {
                   className={cn(
                     "block px-4 py-3 text-sm font-medium rounded-xl transition-all duration-200",
                     "hover:scale-[1.02] hover:shadow-sm",
+                    "active:scale-95", // Add click feedback for mobile
                     pathname === item.href
                       ? "text-primary bg-gradient-to-r from-primary/15 to-purple-500/10 border border-primary/20 shadow-sm"
                       : "text-foreground/70 hover:text-foreground hover:bg-gradient-to-r hover:from-muted/50 hover:to-muted/30"
                   )}
-                  onClick={() => setIsMenuOpen(false)}
+                  onClick={() => {
+                    setIsMenuOpen(false)
+                    // Add haptic feedback for mobile
+                    if (typeof window !== "undefined" && "vibrate" in navigator) {
+                      navigator.vibrate(50)
+                    }
+                  }}
                 >
                   {item.name}
                 </Link>

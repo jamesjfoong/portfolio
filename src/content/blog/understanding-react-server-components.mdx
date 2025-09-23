@@ -1,0 +1,68 @@
+---
+title: "Understanding React Server Components"
+excerpt: "A deep dive into React Server Components and how they change the way we think about React applications."
+category: "technical"
+publishedAt: "2024-01-15"
+updatedAt: "2024-01-16"
+readingTime: 8
+tags: ["React", "Next.js", "Server Components"]
+author: "James Jeremy Foong"
+featured: true
+slug: "understanding-react-server-components"
+---
+
+# Understanding React Server Components
+
+React Server Components represent a fundamental shift in how we build React applications. They allow us to render components on the server, reducing the JavaScript bundle size and improving performance.
+
+## What are Server Components?
+
+Server Components are a new type of React component that runs on the server instead of the client. This means they can access server-side resources like databases, file systems, and APIs directly.
+
+### Key Characteristics
+
+- **Zero Bundle Size**: Server Components don't add to your client-side JavaScript bundle
+- **Direct Data Access**: Can access databases, file systems, and other server-side resources
+- **Secure**: Sensitive data never reaches the client
+- **SEO Friendly**: Content is rendered on the server, improving SEO
+
+## Benefits
+
+- **Reduced bundle size**: Less JavaScript sent to the client
+- **Better performance**: Faster initial page loads
+- **Direct server access**: No need for API routes for simple data fetching
+- **Improved SEO**: Server-rendered content is immediately available to search engines
+
+## Getting Started
+
+To use Server Components, you need to use a framework that supports them, like Next.js 13+ with the app directory.
+
+```jsx
+// This is a Server Component by default in Next.js app directory
+export default function BlogPost() {
+  // This runs on the server
+  const posts = await fetchPosts()
+
+  return (
+    <div>
+      {posts.map(post => (
+        <article key={post.id}>
+          <h2>{post.title}</h2>
+          <p>{post.excerpt}</p>
+        </article>
+      ))}
+    </div>
+  )
+}
+```
+
+## Best Practices
+
+1. **Keep Server Components pure**: Avoid side effects and state
+2. **Use Client Components for interactivity**: Add "use client" directive when needed
+3. **Minimize data over the wire**: Only send what you need to the client
+4. **Leverage streaming**: Use Suspense boundaries for better UX
+
+## Conclusion
+
+React Server Components are a powerful addition to the React ecosystem, enabling developers to build faster, more efficient applications with better SEO and reduced complexity.

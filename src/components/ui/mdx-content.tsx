@@ -1,9 +1,10 @@
 "use client"
 
-import { MDXRemote } from "next-mdx-remote"
-import type { MDXRemoteSerializeResult } from "next-mdx-remote"
-import { useMDXComponents } from "../../../mdx-components"
+import { MDXRemote, type MDXRemoteSerializeResult } from "next-mdx-remote"
+
 import { cn } from "@/lib/utils"
+
+import { useMDXComponents } from "@/../mdx-components"
 
 interface MDXContentProps {
   /** The serialized MDX content to render */

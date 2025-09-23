@@ -25,7 +25,6 @@
   "dependencies": {
     "@fortawesome/free-solid-svg-icons": "^7.0.1",
     "@fortawesome/react-fontawesome": "^3.0.2",
-    "@hookform/resolvers": "^5.2.2",
     "@mdx-js/loader": "^3.1.1",
     "@mdx-js/mdx": "^3.1.1",
     "@mdx-js/react": "^3.1.1",
@@ -36,17 +35,13 @@
     "framer-motion": "^12.23.12",
     "gray-matter": "^4.0.3",
     "gsap": "^3.13.0",
-    "isomorphic-dompurify": "^2.26.0",
     "lucide-react": "^0.544.0",
     "next": "^15.5.3",
     "next-mdx-remote": "^5.0.0",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
-    "react-hook-form": "^7.62.0",
     "react-intersection-observer": "^9.16.0",
-    "tailwind-merge": "^3.3.1",
-    "zod": "^3.25.76",
-    "zustand": "^5.0.8"
+    "tailwind-merge": "^3.3.1"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.3.1",

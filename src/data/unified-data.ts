@@ -1164,7 +1164,7 @@ const personalData: PersonalData = {
         "Created clear visual indicators",
       ],
       media: {
-        type: MediaType.INTERACTIVE_DEMO,
+        type: MediaType.IMAGE_GALLERY,
         thumbnail: "/projects/n-queens-sos-algorithm.png",
         gallery: ["/projects/n-queens-sos-algorithm.png"],
         demo: "https://jamesjfoong.github.io/N-Queens-using-Symbiotic-Organisms-Search-Algorithm",
@@ -1183,7 +1183,7 @@ const personalData: PersonalData = {
       shortDescription: "Interactive Connect 4 game with AI opponent using minimax algorithm with alpha-beta pruning.",
       fullDescription:
         "A web-based Connect 4 game where players can compete against an intelligent AI opponent. The AI uses the minimax algorithm with alpha-beta pruning to make optimal moves, providing a challenging gaming experience.",
-      category: ProjectCategory.GAME_DEVELOPMENT,
+      category: ProjectCategory.WEB_DEVELOPMENT,
       status: ProjectStatus.COMPLETED,
       year: "2020",
       startDate: "2020-03",
@@ -1233,7 +1233,7 @@ const personalData: PersonalData = {
         "Created smooth animations for better UX",
       ],
       media: {
-        type: MediaType.INTERACTIVE_DEMO,
+        type: MediaType.IMAGE_GALLERY,
         thumbnail: "/projects/connect4ai.png",
         gallery: ["/projects/connect4ai.png"],
         demo: "https://jamesjfoong.github.io/connect-4-ai/",
@@ -1394,17 +1394,17 @@ const personalData: PersonalData = {
     },
     {
       name: "AWS",
-      category: TechCategory.CLOUD,
+      category: TechCategory.BACKEND,
       level: SkillLevel.INTERMEDIATE,
     },
     {
       name: "Figma",
-      category: TechCategory.DESIGN,
+      category: TechCategory.FRONTEND,
       level: SkillLevel.INTERMEDIATE,
     },
     {
       name: "Webflow",
-      category: TechCategory.DESIGN,
+      category: TechCategory.FRONTEND,
       level: SkillLevel.ADVANCED,
     },
   ],

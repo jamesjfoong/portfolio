@@ -1,6 +1,4 @@
 import type {
-  BlogCategory,
-  BlogStatus,
   ExperienceType,
   MediaType,
   ProjectCategory,
@@ -83,24 +81,6 @@ export interface Project {
   testimonials?: Testimonial[]
 }
 
-export interface BlogPost {
-  id: string
-  slug: string
-  title: string
-  excerpt: string
-  content: string
-  category: BlogCategory
-  status: BlogStatus
-  publishedAt: string
-  updatedAt?: string
-  readingTime: number
-  tags: string[]
-  author: string
-  featured: boolean
-  views?: number
-  likes?: number
-}
-
 export interface Testimonial {
   id: string
   name: string
@@ -125,25 +105,4 @@ export interface PersonalData {
   skills: Technology[]
   testimonials: Testimonial[]
   quote: string
-}
-
-// SEO and metadata types
-export interface SEOConfig {
-  title: string
-  description: string
-  keywords: string[]
-  ogImage?: string
-  canonical?: string
-}
-
-export interface SocialConfig {
-  twitter?: string
-  linkedin?: string
-  github?: string
-}
-
-export interface AnalyticsConfig {
-  googleAnalytics?: string
-  plausible?: string
-  umami?: string
 }

@@ -9,16 +9,7 @@ import { ArrowRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import ProjectCard from "@/components/ui/project-card"
 import { useInView } from "@/hooks/useScrollAnimation"
-import {
-  fadeInUp,
-  staggerContainer,
-  staggerItem,
-  revealUp,
-  staggerReveal,
-  staggerRevealItem,
-  textReveal,
-  cardHover,
-} from "@/lib/animations"
+import { cardHover, revealUp, staggerItem, staggerReveal, staggerRevealItem, textReveal } from "@/lib/animations"
 import { cn } from "@/lib/utils"
 
 import type { Project } from "@/types"
@@ -69,7 +60,7 @@ export default function ProjectShowcase({ projects, className }: ProjectShowcase
           variants={staggerReveal}
           className="grid grid-cols-1 xs:grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 xs:gap-5 sm:gap-6 mb-12"
         >
-          {featuredProjects.map((project, index) => (
+          {featuredProjects.map((project, _index) => (
             <motion.div
               key={project.id}
               variants={staggerRevealItem}

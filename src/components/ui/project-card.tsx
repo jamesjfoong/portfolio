@@ -53,7 +53,7 @@ export default function ProjectCard({ project, className }: ProjectCardProps): R
       {/* Background hover effect */}
       <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-purple-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
       {/* Project Image */}
-      <div className="relative h-36 xs:h-40 sm:h-48 overflow-hidden z-20">
+      <div className="relative w-full h-36 xs:h-40 sm:h-48 overflow-hidden z-20">
         <Link href={`/projects/${project.slug}`} className="block w-full h-full relative">
           <LazyImage
             src={project.media.thumbnail}
