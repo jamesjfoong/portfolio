@@ -101,4 +101,4 @@ const EnhancedCardFooter = React.forwardRef<HTMLDivElement, React.HTMLAttributes
 )
 EnhancedCardFooter.displayName = "EnhancedCardFooter"
 
-export { EnhancedCardHeader, EnhancedCardFooter, EnhancedCardTitle, EnhancedCardDescription, EnhancedCardContent }
+export { EnhancedCardContent,EnhancedCardDescription, EnhancedCardFooter, EnhancedCardHeader, EnhancedCardTitle }

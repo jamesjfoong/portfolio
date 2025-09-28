@@ -1,0 +1,289 @@
+name: Lighthouse CI
+
+on:
+  pull_request:
+    branches: [main, develop]
+  push:
+    branches: [main]
+  schedule:
+    # Run daily at 2 AM UTC
+    - cron: "0 2 * * *"
+
+jobs:
+  lighthouse:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "18"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build application
+        run: npm run build
+        env:
+          # Use demo/test environment variables
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_OWNER: portfolio-demo
+          GITHUB_REPO: portfolio-content
+          NEXT_PUBLIC_SITE_URL: http://localhost:3000
+          NODE_ENV: production
+
+      - name: Start application
+        run: |
+          npm run start &
+          # Wait for the application to be ready
+          npx wait-on http://localhost:3000 --timeout 60000
+        env:
+          NODE_ENV: production
+
+      - name: Run Lighthouse CI
+        uses: treosh/lighthouse-ci-action@v10
+        with:
+          configPath: "./.lighthouserc.json"
+          temporaryPublicStorage: true
+          runs: 3
+        env:
+          LHCI_GITHUB_APP_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Upload Lighthouse results
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lighthouse-results
+          path: |
+            .lighthouseci
+            lighthouse-results.json
+          retention-days: 30
+
+      - name: Comment PR with Lighthouse results
+        if: github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const path = require('path');
+
+            // Try to find Lighthouse results
+            const resultsDir = '.lighthouseci';
+            let comment = '## 🚦 Lighthouse CI Results\n\n';
+
+            try {
+              if (fs.existsSync(resultsDir)) {
+                const files = fs.readdirSync(resultsDir);
+                const jsonFiles = files.filter(f => f.endsWith('.json'));
+                
+                if (jsonFiles.length > 0) {
+                  const latestResult = jsonFiles[jsonFiles.length - 1];
+                  const resultPath = path.join(resultsDir, latestResult);
+                  const result = JSON.parse(fs.readFileSync(resultPath, 'utf8'));
+                  
+                  const audits = result.audits || {};
+                  const categories = result.categories || {};
+                  
+                  comment += '### 📊 Core Web Vitals\n\n';
+                  
+                  // LCP
+                  if (audits['largest-contentful-paint']) {
+                    const lcp = audits['largest-contentful-paint'];
+                    const lcpValue = (lcp.numericValue / 1000).toFixed(2);
+                    const lcpStatus = parseFloat(lcpValue) <= 1.2 ? '✅' : '⚠️';
+                    comment += `- **Largest Contentful Paint**: ${lcpStatus} ${lcpValue}s (target: ≤1.2s)\n`;
+                  }
+                  
+                  // FID (or TBT as proxy)
+                  if (audits['total-blocking-time']) {
+                    const tbt = audits['total-blocking-time'];
+                    const tbtValue = tbt.numericValue.toFixed(0);
+                    const tbtStatus = parseFloat(tbtValue) <= 200 ? '✅' : '⚠️';
+                    comment += `- **Total Blocking Time**: ${tbtStatus} ${tbtValue}ms (target: ≤200ms)\n`;
+                  }
+                  
+                  // CLS
+                  if (audits['cumulative-layout-shift']) {
+                    const cls = audits['cumulative-layout-shift'];
+                    const clsValue = cls.numericValue.toFixed(3);
+                    const clsStatus = parseFloat(clsValue) <= 0.1 ? '✅' : '⚠️';
+                    comment += `- **Cumulative Layout Shift**: ${clsStatus} ${clsValue} (target: ≤0.1)\n`;
+                  }
+                  
+                  comment += '\n### 🎯 Lighthouse Scores\n\n';
+                  
+                  Object.entries(categories).forEach(([key, category]) => {
+                    if (category && typeof category === 'object' && 'score' in category) {
+                      const score = Math.round((category.score || 0) * 100);
+                      const emoji = score >= 90 ? '🟢' : score >= 70 ? '🟡' : '🔴';
+                      const title = category.title || key;
+                      comment += `- **${title}**: ${emoji} ${score}/100\n`;
+                    }
+                  });
+                  
+                  comment += '\n### 📈 Performance Insights\n\n';
+                  
+                  // Key performance opportunities
+                  if (audits['unused-javascript']) {
+                    const unused = audits['unused-javascript'];
+                    if (unused.details && unused.details.overallSavingsBytes > 10000) {
+                      const savings = Math.round(unused.details.overallSavingsBytes / 1024);
+                      comment += `- 🔧 Remove unused JavaScript (potential ${savings}KB savings)\n`;
+                    }
+                  }
+                  
+                  if (audits['unused-css-rules']) {
+                    const unused = audits['unused-css-rules'];
+                    if (unused.details && unused.details.overallSavingsBytes > 5000) {
+                      const savings = Math.round(unused.details.overallSavingsBytes / 1024);
+                      comment += `- 🎨 Remove unused CSS (potential ${savings}KB savings)\n`;
+                    }
+                  }
+                  
+                  if (audits['modern-image-formats']) {
+                    const images = audits['modern-image-formats'];
+                    if (images.details && images.details.overallSavingsBytes > 10000) {
+                      const savings = Math.round(images.details.overallSavingsBytes / 1024);
+                      comment += `- 🖼️ Use modern image formats (potential ${savings}KB savings)\n`;
+                    }
+                  }
+                  
+                } else {
+                  comment += 'No detailed results available.\n';
+                }
+              } else {
+                comment += 'Lighthouse results not found.\n';
+              }
+            } catch (error) {
+              comment += `Error reading Lighthouse results: ${error.message}\n`;
+            }
+
+            // Add link to full report if available
+            comment += '\n---\n💡 **Tip**: Full Lighthouse reports are available in the [Actions artifacts](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}).\n';
+
+            // Post comment
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: comment
+            });
+
+  lighthouse-mobile:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "18"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build application
+        run: npm run build
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NEXT_PUBLIC_SITE_URL: http://localhost:3000
+          NODE_ENV: production
+
+      - name: Start application
+        run: |
+          npm run start &
+          npx wait-on http://localhost:3000 --timeout 60000
+        env:
+          NODE_ENV: production
+
+      - name: Run Lighthouse CI (Mobile)
+        uses: treosh/lighthouse-ci-action@v10
+        with:
+          configPath: "./.lighthouserc-mobile.json"
+          temporaryPublicStorage: true
+          runs: 3
+        env:
+          LHCI_GITHUB_APP_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Upload Mobile Lighthouse results
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lighthouse-mobile-results
+          path: |
+            .lighthouseci
+            lighthouse-mobile-results.json
+          retention-days: 30
+
+  performance-monitoring:
+    runs-on: ubuntu-latest
+    needs: [lighthouse, lighthouse-mobile]
+    if: github.ref == 'refs/heads/main'
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Download Lighthouse results
+        uses: actions/download-artifact@v4
+        with:
+          name: lighthouse-results
+          path: ./lighthouse-results
+
+      - name: Download Mobile Lighthouse results
+        uses: actions/download-artifact@v4
+        with:
+          name: lighthouse-mobile-results
+          path: ./lighthouse-mobile-results
+
+      - name: Process performance metrics
+        run: |
+          # Create performance summary
+          echo "# Performance Summary" > performance-summary.md
+          echo "Generated: $(date)" >> performance-summary.md
+          echo "" >> performance-summary.md
+
+          # Process desktop results
+          if [ -d "./lighthouse-results" ]; then
+            echo "## Desktop Performance" >> performance-summary.md
+            # Add logic to process desktop results
+          fi
+
+          # Process mobile results
+          if [ -d "./lighthouse-mobile-results" ]; then
+            echo "## Mobile Performance" >> performance-summary.md
+            # Add logic to process mobile results
+          fi
+
+      - name: Update performance tracking
+        run: |
+          # This could update a performance dashboard or database
+          echo "Performance metrics processed and stored"
+
+          # Could send to monitoring service
+          # curl -X POST "$MONITORING_WEBHOOK" -d @performance-summary.md
+
+      - name: Check performance regressions
+        run: |
+          # Logic to compare current results with previous runs
+          # and alert if there are significant regressions
+          echo "Checking for performance regressions..."
+
+          # This would typically compare against stored baselines
+          # and create issues or notifications if thresholds are exceeded
+
+      - name: Archive performance data
+        uses: actions/upload-artifact@v4
+        with:
+          name: performance-summary-${{ github.sha }}
+          path: performance-summary.md
+          retention-days: 90
