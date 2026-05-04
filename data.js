@@ -1,6 +1,8 @@
 const data = {
   name: 'James Jeremy Foong',
   title: 'Senior Software Development Engineer',
+  status: 'Open to opportunities',
+  email: 'jamesjfoong2000@gmail.com',
   bio: `
     <p>A <span class="font-medium text-slate-200">Senior Software Development Engineer</span> based in Surabaya, Indonesia. I specialize in <span class="font-medium text-slate-200">frontend architecture</span>, <span class="font-medium text-slate-200">API contract design</span>, and <span class="font-medium text-slate-200">developer tooling</span>. I ship enterprise tools that scale — from 2.3M-row migrations to zero-dependency extensions.</p><br />
 
@@ -24,6 +26,10 @@ const data = {
     {
       name: 'npm',
       url: 'https://www.npmjs.com/~jamesjfoong',
+    },
+    {
+      name: 'Email',
+      url: 'mailto:jamesjfoong2000@gmail.com',
     },
   ],
   education: {
@@ -115,7 +121,12 @@ const data = {
     {
       year: '2026',
       name: 'pi-ollama',
-      technologies: ['Node.js', 'TypeScript', 'Ollama', 'Zero Dependencies'],
+      technologies: [
+        'Node.js',
+        'TypeScript',
+        'Ollama',
+        'Zero Dependencies',
+      ],
       description:
         'Auto-discover and register Ollama models for the pi coding agent. Eliminates manual config file editing. Published on npm.',
       link: 'https://github.com/jamesjfoong/pi-ollama',
@@ -124,7 +135,13 @@ const data = {
     {
       year: '2025',
       name: 'open-hsk',
-      technologies: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS', 'PWA'],
+      technologies: [
+        'Next.js',
+        'React',
+        'TypeScript',
+        'Tailwind CSS',
+        'PWA',
+      ],
       description:
         'Offline-first flashcard application for learning Chinese vocabulary (HSK 3.0). High-performance with local storage and PWA support.',
       link: 'https://github.com/jamesjfoong/open-hsk',
@@ -133,7 +150,11 @@ const data = {
     {
       year: '2026',
       name: 'build-sha-sync-ui',
-      technologies: ['React', 'TypeScript', 'BYO-token'],
+      technologies: [
+        'React',
+        'TypeScript',
+        'BYO-token',
+      ],
       description:
         'Web UI to sync BUILD_SHA across CATAPA environment files. Simplifies deployment verification for dev and staging environments.',
       link: 'https://github.com/jamesjfoong/build-sha-sync-ui',
@@ -142,7 +163,12 @@ const data = {
     {
       year: '2025',
       name: 'splitsies',
-      technologies: ['Next.js', 'TypeScript', 'Google Gemini', 'PWA'],
+      technologies: [
+        'Next.js',
+        'TypeScript',
+        'Google Gemini',
+        'PWA',
+      ],
       description:
         'AI-powered bill splitting app using Google Gemini. Snap a receipt, let AI parse items, split with friends. PWA-enabled.',
       link: 'https://github.com/jamesjfoong/splitsies',

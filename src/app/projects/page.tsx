@@ -1,7 +1,7 @@
 'use client'
 
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons'
-import data from 'data'
+import data from '../../../data.js'
 import Image from 'next/image'
 import Link from 'next/link'
 
