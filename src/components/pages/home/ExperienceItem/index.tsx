@@ -5,11 +5,13 @@ interface ExperienceProps {
   duration: string
   description: string
   technologies: Array<string>
-  href: string
+  href?: string
 }
 
 export default function ExperienceItem(prop: ExperienceProps): JSX.Element {
   const { role, company, technologies, href, duration, description } = prop
+
+  const Tag = href ? 'a' : 'div'
 
   return (
     <li className="mb-12">
@@ -24,18 +26,24 @@ export default function ExperienceItem(prop: ExperienceProps): JSX.Element {
         <div className="z-10 sm:col-span-6">
           <h3 className="font-medium leading-snug text-slate-200">
             <div>
-              <a
-                className="inline-flex items-baseline font-medium leading-tight text-slate-200 hover:text-teal-300 focus-visible:text-teal-300  group/link text-base"
-                href={href}
-                target="_blank"
-                rel="noreferrer noopener"
-                aria-label={`View ${role} at ${company}`}
+              <Tag
+                className="inline-flex items-baseline font-medium leading-tight text-slate-200 hover:text-teal-300 focus-visible:text-teal-300 group/link text-base"
+                {...(href
+                  ? {
+                      href,
+                      target: '_blank',
+                      rel: 'noreferrer noopener',
+                      'aria-label': `${role} at ${company}`,
+                    }
+                  : {})}
               >
-                <span className="absolute -inset-x-4 -inset-y-2.5 hidden rounded md:-inset-x-6 md:-inset-y-4 lg:block"></span>
-                <span className="cursor-pointer">
+                {href && (
+                  <span className="absolute -inset-x-4 -inset-y-2.5 hidden rounded md:-inset-x-6 md:-inset-y-4 lg:block"></span>
+                )}
+                <span className={href ? 'cursor-pointer' : ''}>
                   {role} · <span className="inline-block">{company}</span>
                 </span>
-              </a>
+              </Tag>
             </div>
           </h3>
           <p className="mt-2 text-sm leading-normal">{description}</p>

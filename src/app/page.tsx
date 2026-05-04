@@ -1,4 +1,4 @@
-import { faCoffee } from '@fortawesome/free-solid-svg-icons'
+import { faArrowRight } from '@fortawesome/free-solid-svg-icons'
 
 import Icon from '@/components/common/Icon'
 import RawHTML from '@/components/common/RawHTML'
@@ -90,7 +90,7 @@ export default function Home() {
                   View Full Project{' '}
                 </span>
                 <Icon
-                  icon={faCoffee}
+                  icon={faArrowRight}
                   className="ml-1 group-hover:text-teal-300 group-hover:transform group-hover:translate-x-1 motion-reduce:transform-none motion-reduce:translate-x-0 transition-transform"
                 />
               </a>
@@ -170,7 +170,7 @@ export default function Home() {
                   Read more on dev.to{' '}
                 </span>
                 <Icon
-                  icon={faCoffee}
+                  icon={faArrowRight}
                   className="ml-1 group-hover:text-teal-300 group-hover:transform group-hover:translate-x-1 motion-reduce:transform-none motion-reduce:translate-x-0 transition-transform"
                 />
               </a>

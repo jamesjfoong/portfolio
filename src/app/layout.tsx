@@ -26,14 +26,14 @@ export const metadata: Metadata = {
     description: 'A personal portfolio site for James Jeremy Foong',
     url: 'https://jamesjfoong.vercel.app/',
     siteName: 'James Jeremy Foong',
-    images: 'https://jamesjfoong.vercel.app/images/screenshoot.PNG',
+    images: 'https://jamesjfoong.vercel.app/og-image.png',
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
     title: 'James Jeremy Foong',
     description: 'A personal portfolio site for James Jeremy Foong',
-    images: ['https://jamesjfoong.vercel.app/images/screenshoot.PNG'],
+    images: ['https://jamesjfoong.vercel.app/og-image.png'],
   },
 }
 
@@ -51,7 +51,7 @@ interface RootLayoutProps {
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en">
-      <body className="leading-relaxed antialiased selection:bg-teal-300 selection:text-teal-900s">
+      <body className="leading-relaxed antialiased selection:bg-teal-300 selection:text-teal-900">
         <div className="relative">
           <CursorAnimation />
           {children}
