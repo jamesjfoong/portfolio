@@ -23,7 +23,7 @@ async function getArticles(): Promise<DevToArticle[]> {
   try {
     const res = await fetch(
       'https://dev.to/api/articles?username=jamesjf7&per_page=3',
-      { next: { revalidate: 86400 } }
+      { next: { revalidate: 86400 } },
     )
     if (!res.ok) return []
     return res.json()
@@ -42,7 +42,8 @@ export default async function Home() {
     { name: 'blogs', href: '#blogs' },
   ]
 
-  const { name, title, bio, experiences, projects, socials, quote, status, email } = data
+  const { name, title, bio, experiences, projects, socials, quote, email } =
+    data
 
   return (
     <div className="mx-auto min-h-screen max-w-screen-xl px-6 py-12 font-sans md:px-12 md:py-20 lg:px-24 lg:py-0">
@@ -56,18 +57,9 @@ export default async function Home() {
               {title}
             </h2>
 
-            {/* Status badge */}
-            {status && (
-              <div className="mt-4 inline-flex items-center gap-2 rounded-full border border-teal-400/20 bg-teal-400/10 px-4 py-1.5 text-sm font-medium text-teal-300 status-shimmer animate-pulse-glow">
-                <span className="relative flex h-2 w-2">
-                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-teal-400 opacity-75"></span>
-                  <span className="relative inline-flex h-2 w-2 rounded-full bg-teal-400"></span>
-                </span>
-                {status}
-              </div>
-            )}
-
-            <p className="mt-4 max-w-xs leading-normal animate-fade-in delay-200">{quote}</p>
+            <p className="mt-4 max-w-xs leading-normal animate-fade-in delay-200">
+              {quote}
+            </p>
 
             <NavList>
               <ul className="mt-16 w-max">
@@ -100,7 +92,10 @@ export default async function Home() {
             </ul>
             {email && (
               <p className="mt-3 text-xs text-slate-500">
-                <a href={`mailto:${email}`} className="hover:text-teal-300 transition-colors">
+                <a
+                  href={`mailto:${email}`}
+                  className="hover:text-teal-300 transition-colors"
+                >
                   {email}
                 </a>
               </p>
@@ -203,7 +198,10 @@ export default async function Home() {
                         <div className="mt-2 flex items-center gap-3 text-xs text-slate-500">
                           <span>{article.reading_time_minutes} min read</span>
                           <span>·</span>
-                          <ul className="flex flex-wrap gap-2" aria-label="Tags">
+                          <ul
+                            className="flex flex-wrap gap-2"
+                            aria-label="Tags"
+                          >
                             {article.tag_list.slice(0, 3).map((tag: string) => (
                               <li key={tag}>
                                 <span className="rounded-full bg-teal-400/10 px-2 py-0.5 text-xs font-medium text-teal-300">
@@ -220,10 +218,17 @@ export default async function Home() {
               </ul>
             ) : (
               <p className="text-slate-500">
-                I write about software development, web development, and software engineering on{' '}
-                <a href="https://dev.to/jamesjf7" target="_blank" rel="noreferrer" className="text-teal-300 hover:underline">
+                I write about software development, web development, and
+                software engineering on{' '}
+                <a
+                  href="https://dev.to/jamesjf7"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-teal-300 hover:underline"
+                >
                   dev.to
-                </a>.
+                </a>
+                .
               </p>
             )}
             <div className="mt-12 animate-fade-in delay-300">
@@ -246,7 +251,8 @@ export default async function Home() {
 
           <footer className="max-w-md pb-16 text-sm text-slate-500 sm:pb-0 animate-fade-in delay-500">
             <p>
-              Built with intention. No templates were harmed in the making of this site.
+              Built with intention. No templates were harmed in the making of
+              this site.
             </p>
             <p className="mt-2">
               <a

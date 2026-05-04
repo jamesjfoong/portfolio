@@ -26,8 +26,12 @@ html {
 }
 
 @keyframes fade-in {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 @keyframes slide-in-left {
@@ -41,18 +45,14 @@ html {
   }
 }
 
-@keyframes pulse-glow {
-  0%, 100% {
-    box-shadow: 0 0 0 0 rgba(0, 255, 200, 0.4);
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
   }
   50% {
-    box-shadow: 0 0 0 8px rgba(0, 255, 200, 0);
+    transform: translateY(-6px);
   }
-}
-
-@keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-6px); }
 }
 
 .animate-fade-in-up {
@@ -67,22 +67,32 @@ html {
   animation: slide-in-left 0.5s ease-out both;
 }
 
-.animate-pulse-glow {
-  animation: pulse-glow 2s ease-in-out infinite;
-}
-
 .animate-float {
   animation: float 3s ease-in-out infinite;
 }
 
 /* Stagger delays */
-.delay-100 { animation-delay: 100ms; }
-.delay-200 { animation-delay: 200ms; }
-.delay-300 { animation-delay: 300ms; }
-.delay-400 { animation-delay: 400ms; }
-.delay-500 { animation-delay: 500ms; }
-.delay-600 { animation-delay: 600ms; }
-.delay-700 { animation-delay: 700ms; }
+.delay-100 {
+  animation-delay: 100ms;
+}
+.delay-200 {
+  animation-delay: 200ms;
+}
+.delay-300 {
+  animation-delay: 300ms;
+}
+.delay-400 {
+  animation-delay: 400ms;
+}
+.delay-500 {
+  animation-delay: 500ms;
+}
+.delay-600 {
+  animation-delay: 600ms;
+}
+.delay-700 {
+  animation-delay: 700ms;
+}
 
 /* Hover lift effect for cards */
 .hover-lift {
@@ -90,16 +100,4 @@ html {
 }
 .hover-lift:hover {
   transform: translateY(-2px);
-}
-
-/* Status badge shimmer */
-@keyframes shimmer {
-  0% { background-position: -200% 0; }
-  100% { background-position: 200% 0; }
-}
-
-.status-shimmer {
-  background: linear-gradient(90deg, rgba(0,255,200,0.1) 0%, rgba(0,255,200,0.2) 50%, rgba(0,255,200,0.1) 100%);
-  background-size: 200% 100%;
-  animation: shimmer 3s ease-in-out infinite;
 }

@@ -1,11 +1,12 @@
 'use client'
 
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons'
-import data from '../../../data.js'
 import Image from 'next/image'
 import Link from 'next/link'
 
 import Icon from '@/components/common/Icon'
+
+import data from '../../../data.js'
 
 export default function Page() {
   const { name, projects } = data
