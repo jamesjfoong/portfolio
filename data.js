@@ -2,20 +2,28 @@ const data = {
   name: 'James Jeremy Foong',
   title: 'Senior Software Development Engineer',
   bio: `
-    <p>A <span class="font-medium text-slate-200">Senior Software Development Engineer</span> based in Surabaya, Indonesia. I hold a Bachelor's degree in <span class="font-medium text-slate-200">Computer Science</span> from <span class="font-medium text-slate-200">Institut Sains dan Teknologi Terpadu Surabaya (ISTTS)</span>, where I graduated with a GPA of 3.99. My final project focused on <span class="font-medium text-slate-200">Facial Expression Recognition using Deep Temporal Appearance Geometry Network</span>, highlighting my expertise in artificial intelligence and advanced computational techniques.</p><br />
+    <p>A <span class="font-medium text-slate-200">Senior Software Development Engineer</span> based in Surabaya, Indonesia. I specialize in <span class="font-medium text-slate-200">frontend architecture</span>, <span class="font-medium text-slate-200">API contract design</span>, and <span class="font-medium text-slate-200">developer tooling</span>. I ship enterprise tools that scale — from 2.3M-row migrations to zero-dependency extensions.</p><br />
 
-    <p>At <span class="font-medium text-slate-200">GDP Labs</span>, I've developed high-impact internal applications, revamped landing pages, and mentored interns, leveraging my skills in <span class="font-medium text-slate-200">web development</span>, <span class="font-medium text-slate-200">AI</span>, and <span class="font-medium text-slate-200">various modern frameworks</span>. My stint at <span class="font-medium text-slate-200">Jojobug</span> in Singapore enhanced my fullstack development capabilities, with hands-on experience in <span class="font-medium text-slate-200">Next.js</span>, <span class="font-medium text-slate-200">Node.js</span>, and <span class="font-medium text-slate-200">Firebase</span>, among other technologies.</p><br />
+    <p>At <span class="font-medium text-slate-200">GDP Labs</span>, I build and maintain critical components for <span class="font-medium text-slate-200">CATAPA</span>, an HR-tech platform serving 15,000+ employees. I've led initiatives across frontend architecture (Angular/NgRx), payment systems (BCA VA/Midtrans), data migration tooling, and compliance features (UU PDP, PMK 168/2023). I also maintain <span class="font-medium text-slate-200">pi-ollama</span>, an open-source extension for the pi coding agent.</p><br />
 
-    <p>I am passionate about <span class="font-medium text-slate-200">creating user-friendly</span>, <span class="font-medium text-slate-200">responsive interfaces</span> and <span class="font-medium text-slate-200">believe in the power of technology to solve complex problems</span>. I strive to make a meaningful impact through my work and am always <span class="font-medium text-slate-200">eager to learn</span> and <span class="font-medium text-slate-200">take on new challenges</span>.</p><br />
+    <p>Previously at <span class="font-medium text-slate-200">Jojobug</span> in Singapore, I worked across the full stack with Next.js, Node.js, and Firebase. I write about the systems I build on <span class="font-medium text-slate-200">dev.to</span> and ship tools developers actually use.</p><br />
   `,
   socials: [
     {
       name: 'LinkedIn',
-      url: 'https://www.linkedin.com/in/james-j-foong/',
+      url: 'https://www.linkedin.com/in/jamesjeremyfoong/',
     },
     {
       name: 'GitHub',
       url: 'https://www.github.com/jamesjf7',
+    },
+    {
+      name: 'Dev.to',
+      url: 'https://dev.to/jamesjf7',
+    },
+    {
+      name: 'npm',
+      url: 'https://www.npmjs.com/~jamesjfoong',
     },
   ],
   education: {
@@ -31,17 +39,17 @@ const data = {
       company: 'GDP Labs, Jakarta',
       duration: '2024 — Present',
       description:
-        "Build and maintain critical components for Klaviyo's frontend, focusing on web accessibility.",
+        'Build and maintain critical components for CATAPA, an HR-tech platform. Led initiatives across frontend architecture, payment integrations, data migrations, and compliance features.',
       technologies: [
         'Angular',
         'NgRx',
-        'Typescript',
+        'TypeScript',
+        'RxJS',
+        'Node.js',
+        'NestJS',
         'Jest',
         'Cypress',
-        'Nest.js',
-        'Python',
-        'React Native',
-        'Artificial Intelligence',
+        'GraphQL',
       ],
     },
     {
@@ -49,14 +57,13 @@ const data = {
       company: 'GDP Labs, Jakarta',
       duration: '2022 — 2023',
       description:
-        'Develop high-quality websites, design systems, and digital experiences for various clients.',
+        'Developed high-quality internal applications, landing pages, and digital experiences for CATAPA. Revamped UI systems and implemented analytics tracking.',
       technologies: [
+        'Angular',
+        'TypeScript',
         'Webflow',
         'SEO',
-        'Responsive UI Design',
-        'Usability',
-        'Angular',
-        'Typescript',
+        'Responsive UI',
         'Google Analytics',
         'Google Tag Manager',
       ],
@@ -66,13 +73,13 @@ const data = {
       company: 'Jojobug, Singapore',
       duration: 'Apr 2022 — Oct 2022',
       description:
-        'Served as a Frontend Software Engineer, contributing my skills to enhance the overall user experience and functionality of web applications. Engaging in collaborative development, I played a crucial role in translating design concepts into responsive and user-friendly interfaces.',
+        'Built responsive interfaces and full-stack features for client projects. Translated design concepts into performant, user-friendly web applications.',
       technologies: [
         'React',
         'Next.js',
         'Firebase',
         'Node.js',
-        'Typescript',
+        'TypeScript',
         'Tailwind CSS',
         'GSAP',
       ],
@@ -106,28 +113,69 @@ const data = {
   ],
   projects: [
     {
-      year: '2023',
-      name: 'CATAPA Landing Page',
-      technologies: ['Webflow', 'HTML', 'CSS', 'JavaScript', 'Jquery'],
+      year: '2026',
+      name: 'pi-ollama',
+      technologies: [
+        'Node.js',
+        'TypeScript',
+        'Ollama',
+        'Zero Dependencies',
+      ],
       description:
-        'A web-based payroll platform that can be accessed online anywhere and anytime, without the need to install additional applications. Build using webflow, with basic HTML, CSS, Javascript and Jquery',
-      link: 'https://catapa.com',
-      image: '/projects/catapa-landing-page.png',
+        'Auto-discover and register Ollama models for the pi coding agent. Eliminates manual config file editing. Published on npm.',
+      link: 'https://github.com/jamesjfoong/pi-ollama',
+      image: '/projects/pi-ollama.png',
+    },
+    {
+      year: '2025',
+      name: 'open-hsk',
+      technologies: [
+        'Next.js',
+        'React',
+        'TypeScript',
+        'Tailwind CSS',
+        'PWA',
+      ],
+      description:
+        'Offline-first flashcard application for learning Chinese vocabulary (HSK 3.0). High-performance with local storage and PWA support.',
+      link: 'https://github.com/jamesjfoong/open-hsk',
+      image: '/projects/open-hsk.png',
+    },
+    {
+      year: '2026',
+      name: 'build-sha-sync-ui',
+      technologies: [
+        'React',
+        'TypeScript',
+        'BYO-token',
+      ],
+      description:
+        'Web UI to sync BUILD_SHA across CATAPA environment files. Simplifies deployment verification for dev and staging environments.',
+      link: 'https://github.com/jamesjfoong/build-sha-sync-ui',
+      image: '/projects/build-sha-sync-ui.png',
+    },
+    {
+      year: '2025',
+      name: 'splitsies',
+      technologies: [
+        'Next.js',
+        'TypeScript',
+        'Google Gemini',
+        'PWA',
+      ],
+      description:
+        'AI-powered bill splitting app using Google Gemini. Snap a receipt, let AI parse items, split with friends. PWA-enabled.',
+      link: 'https://github.com/jamesjfoong/splitsies',
+      image: '/projects/splitsies.png',
     },
     {
       year: '2023',
-      name: 'Safemoon clone',
-      technologies: [
-        'Next.js',
-        'Typescript',
-        'Tailwind CSS',
-        'Metamask',
-        'Uniswap',
-      ],
+      name: 'CATAPA Landing Page',
+      technologies: ['Webflow', 'HTML', 'CSS', 'JavaScript', 'jQuery'],
       description:
-        'Safemoon clone is a clone of the original safemoon webpage, build using next.js, tailwind and firebase',
-      link: 'https://safemoon-clone.vercel.app',
-      image: '/projects/safemoon-clone.png',
+        'Marketing landing page for CATAPA, a web-based payroll platform. Built with Webflow for rapid iteration and SEO optimization.',
+      link: 'https://catapa.com',
+      image: '/projects/catapa-landing-page.png',
     },
     {
       year: '2022',
@@ -137,12 +185,12 @@ const data = {
         'Next.js',
         'Firebase',
         'Node.js',
-        'Typescript',
+        'TypeScript',
         'Tailwind CSS',
         'GSAP',
       ],
       description:
-        'Landing page for Jojobug a web development agency, build using next.js, tailwind and GSAP',
+        'Landing page for Jojobug, a web development agency in Singapore. Responsive design with animated elements using GSAP.',
       link: 'https://jojobug.com',
       image: '/projects/jojobug-new-landing-page.png',
     },
@@ -154,39 +202,30 @@ const data = {
         'Next.js',
         'Firebase',
         'Node.js',
-        'Typescript',
+        'TypeScript',
         'Tailwind CSS',
         'GSAP',
       ],
       description:
-        'Designed and developed a new landing page that increased conversion rates by 20%.',
+        'Blog platform for Jojobug with content management and improved navigation. Contributed to content strategy and frontend implementation.',
       link: 'https://jojobug.com',
       image: '/projects/jojobug-blog.png',
-    },
-    {
-      year: '2022',
-      name: 'Vinobuah',
-      technologies: ['Next.js', 'Tailwind CSS', 'Firebase'],
-      description:
-        'Landing page for vinobuah, a website that sells all kinds of fruits, build using next.js and tailwind',
-      link: 'https://vinobuah.com',
-      image: '/projects/vinobuah.png',
     },
     {
       year: '2021',
       name: 'Advocacy LA',
       technologies: ['Next.js', 'Tailwind CSS', 'GSAP'],
       description:
-        'Developed a new website for a non-profit organization that increased donations by 50%.',
+        'Website for a non-profit organization focused on community advocacy. Modern design with accessibility considerations.',
       link: 'https://advocacy.la/',
       image: '/projects/la-advocacy.png',
     },
     {
       year: '2022',
-      name: 'Facial Expression Recognition System',
-      technologies: ['Python', 'Flash', 'Deep Learning', 'OpenCV'],
+      name: 'Facial Expression Recognition',
+      technologies: ['Python', 'Flask', 'Deep Learning', 'OpenCV'],
       description:
-        'Developed an internal employee time tracker and streamlined the payroll process.',
+        'Final thesis project — real-time facial expression recognition using Deep Temporal Appearance Geometry Network. Built with Flask and deployed for live webcam inference.',
       link: '',
       image: '/projects/fer.jpeg',
     },
@@ -195,72 +234,12 @@ const data = {
       name: 'Buana Megah',
       technologies: ['Laravel Lumen', 'PHP', 'MySQL'],
       description:
-        'Developed an internal employee time tracker and streamlined the payroll process.',
+        'Internal employee time tracker and payroll streamlining system. API-first architecture with MySQL backend.',
       link: 'http://www.buanamegah.com/',
       image: '/projects/buana-megah.png',
     },
-    {
-      year: '2020',
-      name: 'ISTTS Book Management System',
-      technologies: ['React', 'Node.js', 'MySQL', 'Express', 'Bootstrap'],
-      description:
-        'Maintain the website and adding some features of a book management system for practicum activity using react as frontend, node js as backend and MySQL as database',
-      link: '',
-      image: '/projects/bukupraktikum.png',
-    },
-    {
-      year: '2020',
-      name: 'fit4u',
-      technologies: ['Node.js', 'EJS', 'Express', 'MySQL'],
-      description:
-        'fit4u offer endpoint that we hope that users can find out information about the food they eat every day using node.js, ejs, express, etc.',
-      link: 'https://github.com/jamesjf7/soa',
-      image: '/projects/fit4u.png',
-    },
-    {
-      year: '2020',
-      name: 'lifeatio clone',
-      technologies: ['React', 'Node.js', 'MySQL'],
-      description:
-        'Lifeatio clone with a not yet implemented login feature using react as frontend, node.js as backend, and MySQL as database.',
-      link: 'https://lifeatio.vercel.app',
-      image: '/projects/lifeatio-clone.png',
-    },
-    {
-      year: '2020',
-      name: 'N Queen Symbiotic Organisms Search Algorithm',
-      technologies: ['HTML', 'CSS', 'Javascript', 'Evolutionary Algorithm'],
-      description:
-        'Visualization of the N Queens Problem using Symbiotic Organisms Search Algorithm using javascript.',
-      link: 'https://jamesjf7.github.io/N-Queens-using-Symbiotic-Organisms-Search-Algorithm',
-      image: '/projects/n-queens-sos-algorithm.png',
-    },
-    {
-      year: '2020',
-      name: 'Connect 4 AI',
-      technologies: [
-        'HTML',
-        'CSS',
-        'Javascript',
-        'Bootstrap',
-        'Artificial Intelligence',
-      ],
-      description:
-        'Connect 4 AI is a game where you play against an AI. The AI is using minimax alpha beta pruning to play the best possible move. This project made using javascript and bootstrap',
-      link: 'https://jamesjf7.github.io/connect-4-ai/',
-      image: '/projects/connect4ai.png',
-    },
-    {
-      year: '2018 - 2022',
-      name: 'Other Projects',
-      technologies: ['Various'],
-      description:
-        'Various projects from my time at ISTTS, including a kost management system, event management system, safari chess AI, and more.',
-      link: 'https://drive.google.com/file/d/19SsBkSgDshBSC6nwIlBSYrqj_hscMg9w/view',
-      image: '/projects/otherprojects.png',
-    },
   ],
-  quote: 'The only way to do great work is to love what you do.',
+  quote: 'Ship fast, measure obsessively, write about the struggle honestly.',
 }
 
 export default data
