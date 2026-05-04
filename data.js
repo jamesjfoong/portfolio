@@ -115,12 +115,7 @@ const data = {
     {
       year: '2026',
       name: 'pi-ollama',
-      technologies: [
-        'Node.js',
-        'TypeScript',
-        'Ollama',
-        'Zero Dependencies',
-      ],
+      technologies: ['Node.js', 'TypeScript', 'Ollama', 'Zero Dependencies'],
       description:
         'Auto-discover and register Ollama models for the pi coding agent. Eliminates manual config file editing. Published on npm.',
       link: 'https://github.com/jamesjfoong/pi-ollama',
@@ -129,13 +124,7 @@ const data = {
     {
       year: '2025',
       name: 'open-hsk',
-      technologies: [
-        'Next.js',
-        'React',
-        'TypeScript',
-        'Tailwind CSS',
-        'PWA',
-      ],
+      technologies: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS', 'PWA'],
       description:
         'Offline-first flashcard application for learning Chinese vocabulary (HSK 3.0). High-performance with local storage and PWA support.',
       link: 'https://github.com/jamesjfoong/open-hsk',
@@ -144,11 +133,7 @@ const data = {
     {
       year: '2026',
       name: 'build-sha-sync-ui',
-      technologies: [
-        'React',
-        'TypeScript',
-        'BYO-token',
-      ],
+      technologies: ['React', 'TypeScript', 'BYO-token'],
       description:
         'Web UI to sync BUILD_SHA across CATAPA environment files. Simplifies deployment verification for dev and staging environments.',
       link: 'https://github.com/jamesjfoong/build-sha-sync-ui',
@@ -157,12 +142,7 @@ const data = {
     {
       year: '2025',
       name: 'splitsies',
-      technologies: [
-        'Next.js',
-        'TypeScript',
-        'Google Gemini',
-        'PWA',
-      ],
+      technologies: ['Next.js', 'TypeScript', 'Google Gemini', 'PWA'],
       description:
         'AI-powered bill splitting app using Google Gemini. Snap a receipt, let AI parse items, split with friends. PWA-enabled.',
       link: 'https://github.com/jamesjfoong/splitsies',
