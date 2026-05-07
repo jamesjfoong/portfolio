@@ -1,4 +1,46 @@
-const data = {
+export interface Social {
+  name: string
+  url: string
+}
+
+export interface Experience {
+  role: string
+  company: string
+  duration: string
+  description: string
+  technologies: string[]
+}
+
+export interface Project {
+  year: string
+  name: string
+  technologies: string[]
+  description: string
+  link: string
+  image: string
+}
+
+export interface Education {
+  university: string
+  degree: string
+  concentration: string
+  minor: string
+  graduation: string
+}
+
+export interface Data {
+  name: string
+  title: string
+  email: string
+  bio: string
+  socials: Social[]
+  education: Education
+  experiences: Experience[]
+  projects: Project[]
+  quote: string
+}
+
+const data: Data = {
   name: 'James Jeremy Foong',
   title: 'Senior Software Development Engineer',
   email: 'jamesjfoong2000@gmail.com',
@@ -16,7 +58,7 @@ const data = {
     },
     {
       name: 'GitHub',
-      url: 'https://www.github.com/jamesjf7',
+      url: 'https://github.com/jamesjfoong',
     },
     {
       name: 'Dev.to',
@@ -44,7 +86,7 @@ const data = {
       company: 'GDP Labs, Jakarta',
       duration: '2024 — Present',
       description:
-        'Build and maintain critical components for CATAPA, an HR-tech platform. Led initiatives across frontend architecture, payment integrations, data migrations, and compliance features.',
+        'Lead frontend architecture for CATAPA, an HR-tech platform serving 15,000+ employees. Shipped OAuth + Data Trustee security (passed audit), virtualized org chart for 15K+ nodes (60% faster), refactored 50+ resolvers to Factory Pattern (~60% boilerplate cut), removed ~6,000 lines via BaseCrudEffects, and built a 2.3M-row enterprise migration tool. Maintained 100% test coverage on all refactors.',
       technologies: [
         'Angular',
         'NgRx',
@@ -62,7 +104,7 @@ const data = {
       company: 'GDP Labs, Jakarta',
       duration: '2022 — 2023',
       description:
-        'Developed high-quality internal applications, landing pages, and digital experiences for CATAPA. Revamped UI systems and implemented analytics tracking.',
+        'Developed internal applications for CATAPA including tax calculation system (PMK 168/2023 compliance), BCA VA payment integration, and the Angular 17 upgrade. Built marketing landing pages with Webflow, implemented analytics tracking, and optimized SEO across the platform.',
       technologies: [
         'Angular',
         'TypeScript',
@@ -78,7 +120,7 @@ const data = {
       company: 'Jojobug, Singapore',
       duration: 'Apr 2022 — Oct 2022',
       description:
-        'Built responsive interfaces and full-stack features for client projects. Translated design concepts into performant, user-friendly web applications.',
+        'Built responsive landing pages and full-stack features using Next.js, Firebase, and GSAP animations. Translated design concepts into performant, user-friendly web applications for a Singapore-based web development agency.',
       technologies: [
         'React',
         'Next.js',
@@ -94,7 +136,7 @@ const data = {
       company: 'PT. Buana Megah, Surabaya',
       duration: 'July 2021 — Dec 2021',
       description:
-        'Developed an internal employee time tracker and streamlined the payroll process.',
+        'Developed an internal employee time tracker with Laravel Lumen and MySQL, streamlining the payroll process for the company.',
       technologies: ['Laravel Lumen', 'PHP', 'MySQL'],
     },
     {
@@ -220,7 +262,7 @@ const data = {
       technologies: ['Laravel Lumen', 'PHP', 'MySQL'],
       description:
         'Internal employee time tracker and payroll streamlining system. API-first architecture with MySQL backend.',
-      link: 'http://www.buanamegah.com/',
+      link: 'https://www.buanamegah.com/',
       image: '/projects/buana-megah.png',
     },
   ],

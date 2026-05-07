@@ -8,7 +8,7 @@ import NavItem from '@/components/pages/home/NavItem'
 import NavList from '@/components/pages/home/NavList'
 import ProjectItem from '@/components/pages/home/ProjectItem'
 
-import data from '../../data.js'
+import data from '../../data'
 
 interface DevToArticle {
   title: string
@@ -76,7 +76,7 @@ export default async function Home() {
 
           <div>
             <ul className="ml-1 mt-8 flex items-center flex-wrap gap-x-5 gap-y-2">
-              {socials.map((social: any) => (
+              {socials.map((social) => (
                 <li key={social.name} className="text-xs shrink-0">
                   <a
                     href={social.url}
@@ -91,7 +91,7 @@ export default async function Home() {
               ))}
             </ul>
             {email && (
-              <p className="mt-3 text-xs text-slate-500">
+              <p className="mt-3 text-xs text-slate-400">
                 <a
                   href={`mailto:${email}`}
                   className="hover:text-teal-300 transition-colors"
@@ -103,7 +103,7 @@ export default async function Home() {
           </div>
         </header>
 
-        <main className="pt-24 lg:w-1/2 lg:py-24">
+        <main id="main-content" className="pt-24 lg:w-1/2 lg:py-24">
           <HomeSection name="about">
             <div className="animate-fade-in-up">
               <RawHTML content={bio} />
@@ -112,7 +112,7 @@ export default async function Home() {
 
           <HomeSection name="experiences">
             <ol className="group/list">
-              {experiences.map((experience: any, index: number) => (
+              {experiences.map((experience, index: number) => (
                 <div
                   key={index}
                   className={`animate-fade-in-up delay-${(index + 1) * 100}`}
@@ -125,7 +125,7 @@ export default async function Home() {
 
           <HomeSection name="projects">
             <ul className="group/list">
-              {projects.slice(0, 5).map((project: any, index: number) => (
+              {projects.slice(0, 5).map((project) => (
                 <div
                   key={index}
                   className={`hover-lift animate-fade-in-up delay-${(index + 1) * 100}`}
@@ -142,7 +142,7 @@ export default async function Home() {
                 href="/projects"
               >
                 <span className="border-b border-transparent text-slate-300 font-medium pb-px transition group-hover:border-teal-300 motion-reduce:transition-none">
-                  View Full Project{' '}
+                  View All Projects{' '}
                 </span>
                 <Icon
                   icon={faArrowRight}
@@ -162,7 +162,7 @@ export default async function Home() {
                   >
                     <div className="group relative grid pb-1 transition-all sm:grid-cols-8 sm:gap-8 md:gap-4">
                       <div className="absolute -inset-x-4 -inset-y-4 z-0 hidden rounded-md transition motion-reduce:transition-none lg:-inset-x-6 lg:block lg:group-hover:bg-slate-800/50 lg:group-hover:shadow-[inset_0_1px_0_0_rgba(148,163,184,0.1)] lg:group-hover:drop-shadow-lg"></div>
-                      <header className="z-10 mb-2 mt-1 text-xs font-semibold uppercase tracking-wide text-slate-500 sm:col-span-2">
+                      <header className="z-10 mb-2 mt-1 text-xs font-semibold uppercase tracking-wide text-slate-400 sm:col-span-2">
                         {article.readable_publish_date}
                       </header>
                       <div className="z-10 sm:col-span-6">
@@ -195,7 +195,7 @@ export default async function Home() {
                         <p className="mt-2 text-sm leading-normal">
                           {article.description}
                         </p>
-                        <div className="mt-2 flex items-center gap-3 text-xs text-slate-500">
+                        <div className="mt-2 flex items-center gap-3 text-xs text-slate-400">
                           <span>{article.reading_time_minutes} min read</span>
                           <span>·</span>
                           <ul
@@ -217,7 +217,7 @@ export default async function Home() {
                 ))}
               </ul>
             ) : (
-              <p className="text-slate-500">
+              <p className="text-slate-400">
                 I write about software development, web development, and
                 software engineering on{' '}
                 <a
@@ -249,7 +249,7 @@ export default async function Home() {
             </div>
           </HomeSection>
 
-          <footer className="max-w-md pb-16 text-sm text-slate-500 sm:pb-0 animate-fade-in delay-500">
+          <footer className="max-w-md pb-16 text-sm text-slate-400 sm:pb-0 animate-fade-in delay-500">
             <p>
               Built with intention. No templates were harmed in the making of
               this site.
